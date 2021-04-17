@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class CategoryEntity 
+public class CategoryEntity extends CommonEntity
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,24 +1,15 @@
 package com.info.sky.quizbattle.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.info.sky.quizbattle.entity.CategoryEntity;
 
-public class CategoryService 
+public interface CategoryService 
 {
-	public static List<CategoryEntity> getCategoryData()
-	{
-		List<CategoryEntity> list=new ArrayList<>();
-		
-		CategoryEntity model;
-		
-		for(int i=1;i<=10000;i++)
-		{
-			model=new CategoryEntity(i, "Hindi "+i);		
-			list.add(model);
-		}
-		
-		return list;
-	}
+	public void save(CategoryEntity model); 
+	public CategoryEntity getById(int id);
+	public List<CategoryEntity> getlist();
+	public void update(CategoryEntity model);
+	public void delet(int id);
+	public void active(int id);
 }

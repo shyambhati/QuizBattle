@@ -1,12 +1,33 @@
 package com.info.sky.quizbattle.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.info.sky.quizbattle.entity.CategoryEntity;
+
 @Controller
 public class DemoController 
 {
+	
+	
+	public static List<CategoryEntity> getCategoryData()
+	{
+		List<CategoryEntity> list=new ArrayList<>();
+		
+		CategoryEntity model;
+		
+		for(int i=1;i<=10000;i++)
+		{
+			model=new CategoryEntity(i, "Hindi "+i);		
+			list.add(model);
+		}
+		
+		return list;
+	}
 	
 	@ResponseBody
 	@GetMapping("/Demo")
