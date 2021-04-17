@@ -15,7 +15,7 @@ public class CategoryService
 		
 		for(int i=1;i<=10000;i++)
 		{
-			model=new CategoryEntity(i, "Hindi "+i, "Yes");		
+			model=new CategoryEntity(i, "Hindi "+i);		
 			list.add(model);
 		}
 		
