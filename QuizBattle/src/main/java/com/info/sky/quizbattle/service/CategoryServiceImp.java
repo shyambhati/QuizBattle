@@ -1,6 +1,7 @@
 package com.info.sky.quizbattle.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,14 @@ public class CategoryServiceImp implements CategoryService {
 	public void active(int id) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Optional<CategoryEntity>  findByid(int id) {
+		// TODO Auto-generated method stub
+		
+		Optional<CategoryEntity> obj=categoryDao.findById(id);
+		return obj;
 	}
 
 }
