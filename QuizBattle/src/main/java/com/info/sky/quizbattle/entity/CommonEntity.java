@@ -15,7 +15,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @MappedSuperclass
-@EntityListeners(CommonEntity.class)
 public class CommonEntity implements Serializable 
 {
 	

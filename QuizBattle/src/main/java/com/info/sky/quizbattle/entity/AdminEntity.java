@@ -43,7 +43,7 @@ public class AdminEntity
 	private String lastlogin;
 	
 	@Column(name = "totallogin")
-	private String totallogin;
+	private int totallogin;
 	
 	@Column(name = "isdeveloper")
 	private String isdeveloper;
@@ -76,8 +76,10 @@ public class AdminEntity
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public AdminEntity(int id, String name, String phone, String email, String username, String password, String otp,
-			String lastlogin, String totallogin, String isdeveloper, Date createdAt, Date updatedAt, String isactive,
+			String lastlogin, int totallogin, String isdeveloper, Date createdAt, Date updatedAt, String isactive,
 			String uqid, String role, String token) {
 		super();
 		this.id = id;
@@ -97,6 +99,8 @@ public class AdminEntity
 		this.role = role;
 		this.token = token;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -162,11 +166,11 @@ public class AdminEntity
 		this.lastlogin = lastlogin;
 	}
 
-	public String getTotallogin() {
+	public int getTotallogin() {
 		return totallogin;
 	}
 
-	public void setTotallogin(String totallogin) {
+	public void setTotallogin(int totallogin) {
 		this.totallogin = totallogin;
 	}
 
