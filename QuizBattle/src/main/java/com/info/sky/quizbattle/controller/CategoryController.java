@@ -50,9 +50,7 @@ public class CategoryController
 	@GetMapping("/Category/{id}")
 	public CategoryEntity getCategoryById(@PathVariable int id)
 	{
-		
-	
-		
+
 		if(categoryService.findByid(id).isPresent())
 		{
 			return categoryService.getById(id);

@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="category_table")
 public class CategoryEntity extends CommonEntity
 {
 	@Id
@@ -20,7 +22,6 @@ public class CategoryEntity extends CommonEntity
 	
 	public CategoryEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	

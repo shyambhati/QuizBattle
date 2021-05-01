@@ -3,13 +3,16 @@ package com.info.sky.quizbattle.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @MappedSuperclass
@@ -18,12 +21,14 @@ public  class CommonEntity implements Serializable
 	
 	private static final long serialVersionUID = 1L;
 	
-	@JsonIgnore
+	
+	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a")
 	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp
     private Date createdAt;
 
-	@JsonIgnore
+
+	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a")
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private Date updatedAt; 
@@ -37,6 +42,10 @@ public  class CommonEntity implements Serializable
 	
 	@Column(name = "uqid")
 	private String uqid;
+	
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private AdminEntity add_by_model;
 
 	public Date getCreatedAt() {
 		return createdAt;
@@ -78,20 +87,17 @@ public  class CommonEntity implements Serializable
 		this.uqid = uqid;
 	}
 
+	
+	
+	public AdminEntity getAdd_by_model() {
+		return add_by_model;
+	}
+
+	public void setAdd_by_model(AdminEntity add_by_model) {
+		this.add_by_model = add_by_model;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @Column(name = "ad_by_id") private String adByID;
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @ManyToOne(cascade = CascadeType.MERGE) private AdminEntity add_by_model;
-	 */
-
-	
-	
 }

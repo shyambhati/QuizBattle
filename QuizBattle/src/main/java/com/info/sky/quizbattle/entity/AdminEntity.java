@@ -7,13 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
+@Table(name = "admin_table")
+@SelectBeforeUpdate
 public class AdminEntity 
 {
 	@Id
@@ -46,21 +53,23 @@ public class AdminEntity
 	private int totallogin;
 	
 	@Column(name = "isdeveloper")
-	private String isdeveloper;
+	private boolean isdeveloper;
 	
 
+	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     private Date createdAt;
 
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private Date updatedAt;
 
 	@Column(name = "isactive")
-	private String isactive;
+	private boolean isactive;
 	
 	@Column(name = "uqid")
 	private String uqid;
@@ -68,18 +77,17 @@ public class AdminEntity
 	@Column(name = "login_role")
 	private String role;
 
-	@Column(name = "token")
+	@Column(name = "token",unique = true,nullable = false)
 	private String token;
 
 	public AdminEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	
 
 	public AdminEntity(int id, String name, String phone, String email, String username, String password, String otp,
-			String lastlogin, int totallogin, String isdeveloper, Date createdAt, Date updatedAt, String isactive,
+			String lastlogin, int totallogin, boolean isdeveloper, Date createdAt, Date updatedAt, boolean isactive,
 			String uqid, String role, String token) {
 		super();
 		this.id = id;
@@ -174,11 +182,11 @@ public class AdminEntity
 		this.totallogin = totallogin;
 	}
 
-	public String getIsdeveloper() {
+	public boolean getIsdeveloper() {
 		return isdeveloper;
 	}
 
-	public void setIsdeveloper(String isdeveloper) {
+	public void setIsdeveloper(boolean isdeveloper) {
 		this.isdeveloper = isdeveloper;
 	}
 
@@ -198,11 +206,11 @@ public class AdminEntity
 		this.updatedAt = updatedAt;
 	}
 
-	public String getIsactive() {
+	public boolean getIsactive() {
 		return isactive;
 	}
 
-	public void setIsactive(String isactive) {
+	public void setIsactive(boolean isactive) {
 		this.isactive = isactive;
 	}
 
