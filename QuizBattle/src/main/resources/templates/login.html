@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/login.css}" />
+  <meta charset="UTF-8">
+  <title>Admin - Login</title>
+<style  th:inline="text">
+html {
+height:100%;
+  background: #95a5a6;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-image: url([[@{/image/a.jpg}]]);
+  font-family: 'Helvetica Neue', Arial, Sans-Serif;
+}
+</style>
+</head>
+<body>
+
+<div class="login-wrap">
+	
+	<p style="color: red; text-align: center;"></p>
+	
+  <h2>Login</h2>
+  <div class="form">
+  	<p style="color: red; width: 100%; text-align: center; margin-bottom: 10px;"></p>
+  	<form th:action="@{/GetLogin}" method="post" th:object="${loginBean}" >	
+	    <input type="text" placeholder="Username"  th:field="*{username}"/>
+	    <input type="password" placeholder="Password" th:field="*{password}"/>
+	    <button type="submit"> Sign in </button>
+    </form>
+    
+  </div>
+</div>
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/js/login.js}"></script>
+</body>
+</html>

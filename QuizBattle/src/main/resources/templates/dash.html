@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="base::mainlayout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<section>
+	<div class="row pl-2 pt-2">
+    <div class="col-lg-12 ">
+      <div class="main__title">
+        <img th:src="@{/image/hello.svg}" alt="Admin" />
+        <div class="main__greeting">
+          <h1 th:text="${admin_name}">Hello,  </h1>
+          <p>Welcome to your admin dashboard</p>
+          <span id="MyClockDisplay" class="clock" onload="showTime()"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row bg-white p-4 mt-3">
+    <div class="col-lg-3">
+       <div class="counter blue">
+            <div class="counter-icon">
+                <i class="fa fa-user"></i>
+            </div>
+            <span class="counter-value">7</span>
+            <h3>T-User</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+        <div class="counter">
+            <div class="counter-icon">
+                <i class="fa fa-book"></i>
+            </div>
+            <span class="counter-value">7</span>
+            <h3>T-Quiz</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+        <div class="counter purple">
+            <div class="counter-icon">
+                <i class="fa fa-object-group "></i>
+            </div>
+            <span class="counter-value">7</span>
+            <h3>Total-Category</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+        <div class="counter pink">
+            <div class="counter-icon">
+                <i class="fa fa-percent"></i>
+            </div>
+            <span class="counter-value">7</span>
+            <h3>Total-Plan</h3>
+        </div>
+    </div>
+  </div>
+
+  <div class="row p-2">
+    <div class="col-lg-12">
+      <div class="card p-0 ">
+      <h5 class="card-header">Latest 5 User
+      </h5>
+      <div class="card-body p-0">
+        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
+          <thead>
+            <tr>
+              <th>sl</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Last Login</th>
+              <th>IsActive</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "admin_table")
-@SelectBeforeUpdate
 public class AdminEntity 
 {
 	@Id
@@ -236,6 +235,16 @@ public class AdminEntity
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "AdminEntity [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", username="
+				+ username + ", password=" + password + ", otp=" + otp + ", lastlogin=" + lastlogin + ", totallogin="
+				+ totallogin + ", isdeveloper=" + isdeveloper + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+				+ ", isactive=" + isactive + ", uqid=" + uqid + ", role=" + role + ", token=" + token + "]";
 	}
 	
 	

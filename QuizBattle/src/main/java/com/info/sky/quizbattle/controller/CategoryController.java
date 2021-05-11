@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,6 +18,7 @@ import com.info.sky.quizbattle.service.CategoryService;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder.ParameterBinding.Unique;
 
 @Controller
+@RequestMapping("/Admin/Category/")
 public class CategoryController 
 {
 	
@@ -25,7 +27,7 @@ public class CategoryController
 	
 
 	@ResponseBody
-	@PostMapping("/Category")
+	@PostMapping("/")
 	public String saveCategory(@RequestBody CategoryEntity model)
 	{	
 		
@@ -38,7 +40,7 @@ public class CategoryController
 	
 	
 	@ResponseBody
-	@GetMapping("/Category")
+	@GetMapping("/")
 	public List<CategoryEntity> getCategory()
 	{
 		return categoryService.getlist();
@@ -47,7 +49,7 @@ public class CategoryController
 	
 	
 	@ResponseBody
-	@GetMapping("/Category/{id}")
+	@GetMapping("{id}")
 	public CategoryEntity getCategoryById(@PathVariable int id)
 	{
 

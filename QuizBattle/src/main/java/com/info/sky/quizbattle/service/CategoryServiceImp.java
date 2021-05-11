@@ -24,13 +24,11 @@ public class CategoryServiceImp implements CategoryService {
 
 	@Override
 	public CategoryEntity getById(int id) {
-		// TODO Auto-generated method stub
 		return categoryDao.getOne(id);
 	}
 
 	@Override
 	public List<CategoryEntity> getlist() {
-		// TODO Auto-generated method stub
 		return categoryDao.findAll();
 	}
 

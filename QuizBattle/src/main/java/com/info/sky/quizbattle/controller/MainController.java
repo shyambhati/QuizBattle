@@ -14,12 +14,12 @@ import com.info.sky.quizbattle.entity.CategoryEntity;
 public class MainController 
 {
 	
-	@ResponseBody
-	@RequestMapping(value = {"/",""})
-	public String startup()
-	{
-		return "This is a Quiz battle application!";
-	}
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = {"/",""}) public String startup() { return
+	 * "This is a Quiz battle application!"; }
+	 */
 	
 	public static List<CategoryEntity> getCategoryData()
 	{

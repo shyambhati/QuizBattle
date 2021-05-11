@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="/base::mainlayout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+  <style type="text/css">
+  .panel-heading
+{
+  padding: 5px!important;
+  height: 40px;
+}
+
+.panel_btn
+{
+float: right;
+}
+  </style>  
+</head>
+<body>
+
+<section>
+
+ <style type="text/css">
+  .panel-heading
+{
+  padding: 5px!important;
+  height: 40px;
+}
+
+.panel_btn
+{
+float: right;
+}
+  </style>  
+<div class="row add_data_div" >
+        	
+        	<div class="col-lg-12">
+        	
+        		<h3>Add New Category Details</h3>
+        		<hr>
+        	</div>
+        	
+        	<form class="form-horizontal" action="NewCategory" method="post" modelAttribute="categoryBean" enctype="multipart/form-data">
+	        	<div class="col-lg-6">
+				  <div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">Name : </label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control"  placeholder="Category name..." path="name" required="required"/>
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">Details : </label>
+				    <div class="col-sm-10">
+				      <textarea  class="form-control"  placeholder="Extra Information..." 
+				      			 path="details" 
+				      			 required="required"
+				      			 rows="4"></textarea>
+				    </div>
+				  </div>
+				  
+				  
+				  
+	        	</div>
+	        	<div class="col-lg-6">
+	        		 <div class="row">
+	        		 	<div class="col-lg-9">
+	        		 		
+	        		 		<div class="form-group">
+							    <label for="inputPassword" class="col-sm-3 control-label">Status : </label>
+							    <div class="col-sm-9">
+							      <select class="form-control" path="isactive">
+							      	<option>De-Active</option>
+							      	<option>Active</option>
+							      </select>
+							    </div>
+							  </div>
+	        		 		<div class="form-group">
+							    <label for="inputPassword" class="col-sm-3 control-label">Image : </label>
+							    <div class="col-sm-9">
+							      <input type="file" class="form-control"  placeholder="select category image..." id="imageInput"  onchange="loadImageFile(event)" path="image" name="image" required="required"/>
+							      <p  style="padding: 2px; margin-top: 2px; color: red;"> Image Should Be Less Than 100 kb </p>
+							    </div>
+							</div>
+							
+							
+
+							<div class="form-group">
+							    <div class="col-sm-9 col-md-offset-3">
+							      <button type="submit" class="btn btn-primary btn-block">Save</button> 
+							    </div>
+							</div>
+	        		 	</div>
+	        		 	<div class="col-lg-3">
+	        		 		<img src="${image}/noimage.png" class="img-responsive img-thumbnail" id="imageView" >
+	        		 	</div>
+	        		 </div>
+	        	</div>
+        	</form>
+        </div>
+
+        <div class="row data_view">
+      		<div class="panel panel-default">
+      			<div class="panel-heading">
+      				LAST 5 ADDED DATA LIST
+      				 <a href="#" class="btn btn-sm btn-danger panel_btn">View/Manage All Data</a>
+      			</div>
+      			<table class="table table-bordered table-condensed">
+      				<thead>
+      					<tr>
+      						<th>sl</th>
+      						<th>Name</th>
+      						<th>Discount</th>
+      						<th>Date</th>
+      						<th>is-Offer</th>
+      						<th>Is-Active</th>
+      						<th>AddBy</th>
+      					</tr>
+      				</thead>
+      				<tbody>	
+							<tr>
+								<td >21</td>
+								<td >Dad</td>
+								<td >DADA</td>
+								<td >DADA</td>
+								<td >NO</td>
+								<td >YES</td>
+								<td >adAD</td>
+							</tr>
+      				</tbody>
+      			</table>
+      		</div>
+        </div>
+</section>
+
+</body>
+</html>
