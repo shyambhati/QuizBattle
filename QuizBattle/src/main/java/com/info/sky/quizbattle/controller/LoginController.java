@@ -12,6 +12,7 @@ import com.info.sky.quizbattle.SessionRecord;
 import com.info.sky.quizbattle.entity.AdminEntity;
 import com.info.sky.quizbattle.entity.LoginBean;
 import com.info.sky.quizbattle.service.AdminService;
+import com.info.sky.quizbattle.service.common.UrlBase;
 
 @Controller
 public class LoginController 
@@ -34,7 +35,7 @@ public class LoginController
 		loginBean.setUsername("");
 		loginBean.setPassword("");
 		
-		return "login";
+		return UrlBase.login_page;
 	}
 	
 	
@@ -53,7 +54,7 @@ public class LoginController
 			 return "redirect:Admin/Dash/";
 		}
 		else
-			return "login";
+			return UrlBase.login_page;
 		
 	}
 	

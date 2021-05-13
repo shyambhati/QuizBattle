@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.info.sky.quizbattle.SessionRecord;
+import com.info.sky.quizbattle.service.CategoryService;
 
 @Controller
 @RequestMapping("/Admin")
@@ -14,16 +15,20 @@ public class AdminController
 {
 	
 	@Autowired
-	private SessionRecord sessionRecord;
+	private SessionRecord sr;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	@RequestMapping("Dash/")
 	public String dash(Model model)
 	{
 		
-		if(sessionRecord.getLoginStatus()!=null&&sessionRecord.getLoginStatus().equalsIgnoreCase("true"))
-		{
+		if(sr.isLogin())
+		{		
 			
-			model.addAttribute("admin_name","Hello, "+sessionRecord.getAdminName());
+			System.out.println("Size : "+categoryService.getlist().size());
+			 model.addAttribute("category_size",categoryService.getlist().size()); 
 			return "dash";
 		}
 		else

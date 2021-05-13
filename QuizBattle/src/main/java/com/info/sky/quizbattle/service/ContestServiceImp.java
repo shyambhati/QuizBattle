@@ -7,39 +7,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.info.sky.quizbattle.Dao.CategoryDao;
+import com.info.sky.quizbattle.Dao.ContestDao;
 import com.info.sky.quizbattle.entity.CategoryEntity;
-
+import com.info.sky.quizbattle.entity.ContestEntity;
 
 @Service
-public class CategoryServiceImp implements CategoryService {
+public class ContestServiceImp implements ContestService {
 
-	
 	@Autowired
-	private CategoryDao categoryDao;
+	private ContestDao dao;
 	
 	@Override
-	public void save(CategoryEntity model) {
-		categoryDao.save(model);
+	public void save(ContestEntity model) {
+		dao.save(model);
 	}
 
 	@Override
-	public CategoryEntity getById(int id) {
-		return categoryDao.getOne(id);
+	public ContestEntity getById(int id) {
+		return dao.getOne(id);
 	}
 
 	@Override
-	public List<CategoryEntity> getlist() {
-		return categoryDao.findAll();
+	public List<ContestEntity> getlist() {
+		return dao.findAll();
 	}
 
 	@Override
-	public void update(CategoryEntity model) {
+	public void update(ContestEntity model) {
 		
 	}
 
 	@Override
 	public void delet(int id) {
-		categoryDao.deleteById(id);
+		dao.deleteById(id);
 	}
 
 	@Override
@@ -49,11 +49,10 @@ public class CategoryServiceImp implements CategoryService {
 	}
 
 	@Override
-	public Optional<CategoryEntity>  findByid(int id) {
+	public Optional<ContestEntity>  findByid(int id) {
 		// TODO Auto-generated method stub
 		
-		Optional<CategoryEntity> obj=categoryDao.findById(id);
+		Optional<ContestEntity> obj=dao.findById(id);
 		return obj;
 	}
-
 }

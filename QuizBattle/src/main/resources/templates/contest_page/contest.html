@@ -3,10 +3,9 @@
 th:replace="/base::mainlayout(~{::section})">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title> 
 
 </head>
-<body>
+<body >
 
 <section>
  
@@ -14,17 +13,34 @@ th:replace="/base::mainlayout(~{::section})">
         	
         	<div class="col-lg-12">
         		<div class="card  p-0 border-info" >
-        		<h5 class="card-header text-white bg-info">Add New Category Details</h5>
+        		<h5 class="card-header text-white bg-info">Add New Contest Details</h5>
 				  <div class="card-body p-2">
-				    <form th:action="@{Save}" method="post" th:object="${categoryEntity}" class="row">
+				    <form th:action="@{Save}" 
+				    		method="post" 
+				    		th:object="${contestBean}" 
+				    		class="row">
 		        		<div class="col-lg-4">
 							  <div class="form-group row">
 							    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
 							    <div class="col-sm-9">
-							      <input type="text"  class="form-control" th:field="*{name}" >
+							      <input type="text"  class="form-control" th:field="*{name}"  
+							      placeholder="Enter name.." required="required">
 							    </div>
 							  </div>
 						 </div>
+						 
+						<div class="col-lg-4">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-4 col-form-label">Date-Time</label>
+							    <div class="col-sm-8">
+							      <input class="form-control" type="datetime-local" 
+							      th:field="*{startDateTime}" 
+							      id="startDateTime"
+							      min="2017-06-01T08:30" max="2022-06-30T16:30">
+							    </div>
+							  </div>
+						 </div> 
+						 
 						 <div class="col-lg-4">
 						 	<div class="form-group row">
 							    <label for="staticEmail" class="col-sm-3 col-form-label">Status</label>
@@ -55,7 +71,7 @@ th:replace="/base::mainlayout(~{::section})">
 		<div class="row p-2">
 		    <div class="col-lg-12">
 		      <div class="card p-0 border-info">
-		      <h5 class="card-header text-white bg-info">Category Data List
+		      <h5 class="card-header text-white bg-info">Contest Data List
 		      </h5>
 		      <div class="card-body p-0">
 		        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
@@ -66,7 +82,8 @@ th:replace="/base::mainlayout(~{::section})">
 		              <th>Name</th>
 		              <th style="min-width: 90px;">Status</th>
 		              <th>Add By</th>
-		              <th>Date</th>
+		              <th>Add Date</th>
+		              <th>Contest Date</th>
 		              <th>Action</th>
 		            </tr>
 		          </thead>
@@ -81,7 +98,9 @@ th:replace="/base::mainlayout(~{::section})">
 			            <td th:text="${obj.isactive=='Yes'} ? 'Active' : 'De-Active'"  > Name</td> 
 			            <!-- <td th:text="${obj.isactive}" > Name</td> -->
 			            <td th:text="${obj.add_by_model.name}"> Name</td>
-			            <td th:text="${#dates.format(obj.createdAt, 'dd-MMM-yyyy HH:mm:ss a')}"> Name</td>
+			            <td th:text="${obj.contestStatus}"> Contest Status</td>
+			            <!-- <td th:text="${#dates.format(obj.createdAt, 'dd-MMM-yyyy HH:mm:ss a')}"> Name</td> -->
+			            <td th:text="${#temporals.format(obj.startDateTime, 'dd-MM-yyyy hh:mm:ss a')}"> Name</td>
 			            <td>
 			            
 			            	<a class="text-white btn btn-sm btn-success px-2 py-1" 
@@ -97,7 +116,7 @@ th:replace="/base::mainlayout(~{::section})">
 	              			<a class="text-white btn btn-sm btn-info px-2 py-1" 
 	              				href="#"
 	              				 title="Edit"
-	              				 th:attr="onclick='myFunction(\'' + ${obj.name}+  '\',\'' + ${obj.isactive}+  '\',\'' + ${obj.id}+  '\');'"
+	              				 th:attr="onclick='editContestFunction(\'' + ${obj.name}+  '\',\'' + ${obj.startDateTime}+  '\',\'' + ${obj.isactive}+  '\',\'' + ${obj.id}+  '\');'"
 	              				 ><i class="fa fa-pencil"></i></a>
 	              					
 			            	<a class="text-white btn btn-sm btn-danger px-2 py-1" 
@@ -134,27 +153,37 @@ th:replace="/base::mainlayout(~{::section})">
         </button>
       </div>
       <div class="modal-body">
-       	<form th:action="@{Update}" method="post" th:object="${categoryEntity}" class="">
+       	<form th:action="@{Update}" method="post" th:object="${contestBean}" class="">
        		
   
 		  <div class="form-group row">
 		    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
 		    <div class="col-sm-9">
-		      <input type="text"  class="form-control" id="categoryName" th:field="*{name}" required="required">
+		      <input type="text"  class="form-control" id="contestName" th:field="*{name}" 
+		      required="required">
 		    </div>
 		  </div>
 	
+		<div class="form-group row">
+		    <label for="staticEmail" class="col-sm-3 col-form-label">Date Time</label>
+		    <div class="col-sm-9">
+		      <input class="form-control" type="datetime-local" 
+		      th:field="*{startDateTime}" 
+		      id="startDateTime1"
+		      min="2017-06-01T08:30" max="2022-06-30T16:30">
+		    </div>
+		  </div>
 	 		<div class="form-group row">
 		    <label for="staticEmail" class="col-sm-3 col-form-label">Status</label>
 		    <div class="col-sm-9">
-		     <select class="form-control" th:field="*{isactive}" id="categoryStatus">
+		     <select class="form-control" th:field="*{isactive}" id="contestStatus">
 		      	<option value="No">De-Active</option>
 		      	<option value="Yes">Active</option>
 		      </select>
 		    </div>
 		  </div>
 		  
-		  <input type="hidden" id="categoryId" th:field="*{id}">
+		  <input type="hidden" id="contestId" th:field="*{id}">
 	
 		<div class="form-group row">
 		    <div class="col-md-9 offset-md-3">
@@ -167,6 +196,30 @@ th:replace="/base::mainlayout(~{::section})">
     </div>
   </div>
 </div>
+
+ 
+ 
+ 
+ 
+ 
+ <script type="text/javascript">
+
+ function mindate()
+ {
+
+	 
+ elem1 = document.getElementById("startDateTime1") ;
+ elem = document.getElementById("startDateTime");
+ var iso = new Date().toISOString();
+ var minDate = iso.substring(0,16);
+ elem.value = minDate
+ elem.min = minDate
+ 
+ elem1.value = minDate
+ elem1.min = minDate
+ }
+ mindate();
+ </script>
 </section>
 
 

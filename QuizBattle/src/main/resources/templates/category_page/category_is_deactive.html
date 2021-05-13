@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="/base::mainlayout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title> 
+
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<section>
+ 
+		<div class="row p-2">
+		    <div class="col-lg-12">
+		      <div class="card p-0 border-info">
+		      <h5 class="card-header text-white bg-info">Category Data List
+		      </h5>
+		      <div class="card-body p-0">
+		        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
+		        	
+		          <thead class="table-secondary">
+		            <tr>
+		              <th>sl</th>
+		              <th>Name</th>
+		              <th style="min-width: 90px;">Status</th>
+		              <th>Add By</th>
+		              <th>Date</th>
+		              <th>Action</th>
+		            </tr>
+		          </thead>
+		          <tbody>
+		          	<tr th:if="${list_obj.empty}">
+			            <td colspan="5" class="text-center"> No Category Available </td>
+			        </tr>
+			        
+			        <tr th:each="obj : ${list_obj}">
+			            <th th:text="${obj.id}"> ID </th>
+			            <td th:text="${obj.name}"> Name</td>
+			            <td th:text="${obj.isactive=='Yes'} ? 'Active' : 'De-Active'"  > Name</td> 
+			            <!-- <td th:text="${obj.isactive}" > Name</td> -->
+			            <td th:text="${obj.add_by_model.name}"> Name</td>
+			            <td th:text="${#dates.format(obj.createdAt, 'dd-MMM-yyyy HH:mm:ss a')}"> Name</td>
+			            <td>
+			            
+	              				
+	              			<a class="text-white btn btn-sm btn-success px-2 py-1" 
+	              				href="#" th:href="@{Active(thisid=${obj.id})}"
+	              				th:classappend="${obj.isactive=='Yes'} ? disabled : demo"
+	              				 title="Active"><i class="fa fa-check"></i></a>	
+	              				
+			            	<a class="text-white btn btn-sm btn-danger px-2 py-1" 
+	              				href="#" th:href="@{Remove(thisid=${obj.id})}"><i class="fa fa-trash"></i></a>
+	              				
+			            </td>
+			        </tr>
+		            
+		          </tbody>
+		        </table>
+		      </div>
+		    </div>
+		    </div>
+		  </div>
+		  
+		  
+</section>
+
+
+
+
+</body>
+</html>

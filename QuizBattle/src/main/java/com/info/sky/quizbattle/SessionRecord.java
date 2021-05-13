@@ -105,5 +105,14 @@ public class SessionRecord
 		session.invalidate();
     }
 	
+	public boolean isLogin()
+	{
+		String val=(String)session.getAttribute("loginStatus");
+		if(val!=null&&val.equalsIgnoreCase("true"))
+			return true;
+		else
+			return false;
+	}
+	
 	
 }

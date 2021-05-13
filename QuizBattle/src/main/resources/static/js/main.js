@@ -22,35 +22,7 @@ $(function() {
 
 
 
-function showTime(){
-    var date = new Date();
-    var h = date.getHours(); // 0 - 23
-    var m = date.getMinutes(); // 0 - 59
-    var s = date.getSeconds(); // 0 - 59
-    var session = "AM";
-    
-    if(h == 0){
-        h = 12;
-    }
-    
-    if(h > 12){
-        h = h - 12;
-        session = "PM";
-    }
-    
-    h = (h < 10) ? "0" + h : h;
-    m = (m < 10) ? "0" + m : m;
-    s = (s < 10) ? "0" + s : s;
-    
-    var time = h + ":" + m + ":" + s + " " + session;
-    document.getElementById("MyClockDisplay").innerText = time;
-    document.getElementById("MyClockDisplay").textContent = time;
-    
-    setTimeout(showTime, 1000);
-    
-}
 
-showTime();
 
 
 
@@ -74,3 +46,45 @@ $(document).ready(function(){
         });
     });
 });
+
+
+
+function myFunction(name,status,id) {
+	
+//	  alert("I am an alert box! :- "+name+" : "+status);
+	  
+	  document.getElementById("categoryName").value = ""+name;
+	  
+	  document.getElementById("categoryId").value = ""+id;
+
+	  if(status==="Yes")
+		  document.getElementById("categoryStatus").selectedIndex = "1";
+	  else
+		  document.getElementById("categoryStatus").selectedIndex = "0";
+	
+	  $("#editModal").modal()
+	}
+
+
+function editContestFunction(name,time,status,id) {
+	
+
+	  document.getElementById("contestName").value = ""+name;
+	  
+	  document.getElementById("contestId").value = ""+id;
+	  
+	  document.getElementById("startDateTime1").value = ""+time;
+
+	  if(status==="Yes")
+		  document.getElementById("contestStatus").selectedIndex = "1";
+	  else
+		  document.getElementById("contestStatus").selectedIndex = "0";
+	
+	  $("#editModal").modal()
+}
+
+
+
+
+
+

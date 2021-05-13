@@ -1,7 +1,8 @@
 package com.info.sky.quizbattle.controller;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,28 +10,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.info.sky.quizbattle.SessionRecord;
+import com.info.sky.quizbattle.Dao.ContestPoolDao;
 import com.info.sky.quizbattle.entity.AdminEntity;
-import com.info.sky.quizbattle.entity.CategoryEntity;
-import com.info.sky.quizbattle.entity.LoginBean;
+import com.info.sky.quizbattle.entity.ContestEntity;
+import com.info.sky.quizbattle.entity.ContestPlanEntity;
+import com.info.sky.quizbattle.entity.PoolMemberPriceEntity;
 import com.info.sky.quizbattle.service.AdminService;
 import com.info.sky.quizbattle.service.CategoryService;
+import com.info.sky.quizbattle.service.ContestService;
 import com.info.sky.quizbattle.service.common.Uqid;
 import com.info.sky.quizbattle.service.common.UrlBase;
 
-import net.bytebuddy.implementation.bind.MethodDelegationBinder.ParameterBinding.Unique;
-
 @Controller
-@RequestMapping("/Admin/Category/")
-public class CategoryController 
+@RequestMapping("/Admin/Contest/")
+public class ContestController 
 {
-	
 	@Autowired
 	private CategoryService categoryService;
 	
@@ -40,19 +40,29 @@ public class CategoryController
 	@Autowired
 	private AdminService adminService;
 	
-
+	
+	@Autowired
+	private ContestService contestService;
+	
+	@Autowired
+	private ContestPoolDao contestPoolDao;
+	
+	 
+	
 	@RequestMapping("/Manage")
-	public String dash(@ModelAttribute CategoryEntity categoryBean,Model model)
+	public String manage(Model model)
 	{
+		System.out.println("is work");
 
 		if(sr.isLogin())
 		{		
-			List<CategoryEntity> list=categoryService.getlist();
+			 model.addAttribute("contestBean", new ContestEntity()); 
+			List<ContestEntity> list=contestService.getlist();
 
 			list=list.stream().filter(c -> c.getIsdelete().equalsIgnoreCase("No")).collect(Collectors.toList());
 			
 			model.addAttribute("list_obj",list);
-			return UrlBase.category_manage;
+			return UrlBase.contest_manage;
 		}
 		else
 			return UrlBase.redirect_login;
@@ -60,38 +70,48 @@ public class CategoryController
 	
 	
 	@PostMapping({"/Save"})
-	public String save(@ModelAttribute CategoryEntity categoryEntity)
+	public String save(@ModelAttribute ContestEntity contestBean)
 	{
 		if(sr.isLogin())
 		{
-			categoryEntity.setIsdelete("No");
-			categoryEntity.setUqid(Uqid.getuqid()+"");
+			contestBean.setIsdelete("No");
+			contestBean.setUqid(Uqid.getuqid()+"");
+			contestBean.setContestStatus("Upcoming");
+			
+			System.out.println("contestBean : "+contestBean.getStartDateTime());
+			
+			if (contestBean.getStartDateTime() == null) {
+				contestBean.setStartDateTime(LocalDateTime.now());
+		    }
 			
 			AdminEntity admin=adminService.getAdminByUqid(sr.getAdminUnq());
-			categoryEntity.setAdd_by_model(admin);
+			contestBean.setAdd_by_model(admin);
 			
-			categoryService.save(categoryEntity);
-			return "redirect:/Admin/Dash/Category/Manage";
+			contestService.save(contestBean);
+			return "redirect:/Admin/Contest/Manage";
 		}
 		else
-			return UrlBase.redirect_login;
-		
-		
+			return UrlBase.redirect_login;		
 	}
 	
 	
+	
+	
+	
+	
 	@PostMapping({"/Update"})
-	public String update(@ModelAttribute CategoryEntity model)
+	public String update(@ModelAttribute ContestEntity model)
 	{
 		if(sr.isLogin())
 		{
-			CategoryEntity entity=categoryService.getById(model.getId());
+			ContestEntity entity=contestService.getById(model.getId());
 			
 			entity.setName(model.getName());
 			entity.setIsactive(model.getIsactive());
+			entity.setStartDateTime(model.getStartDateTime());
 			
-			categoryService.save(entity);
-			return "redirect:/Admin/Dash/Category/Manage";
+			contestService.save(entity);
+			return "redirect:/Admin/Contest/Manage";
 		}
 		else
 			return UrlBase.redirect_login;
@@ -104,12 +124,12 @@ public class CategoryController
 	{
 		if(sr.isLogin())
 		{
-			CategoryEntity entity=categoryService.getById(Integer.parseInt(id));
+			ContestEntity entity=contestService.getById(Integer.parseInt(id));
 			entity.setIsdelete("Yes");
 			
-			categoryService.save(entity);
+			contestService.save(entity);
 			
-			return "redirect:/Admin/Dash/Category/Manage";
+			return "redirect:/Admin/Contest/Manage";
 		}
 		else
 			return UrlBase.redirect_login;
@@ -123,11 +143,11 @@ public class CategoryController
 	{
 		if(sr.isLogin())
 		{
-			CategoryEntity entity=categoryService.getById(Integer.parseInt(id));
+			ContestEntity entity=contestService.getById(Integer.parseInt(id));
 			
 			entity.setIsactive("Yes");
-			categoryService.save(entity);
-			return "redirect:/Admin/Dash/Category/Manage";
+			contestService.save(entity);
+			return "redirect:/Admin/Contest/Manage";
 		}
 		else
 			return UrlBase.redirect_login;
@@ -139,13 +159,13 @@ public class CategoryController
 	{
 		if(sr.isLogin())
 		{
-			CategoryEntity entity=categoryService.getById(Integer.parseInt(id));
+			ContestEntity entity=contestService.getById(Integer.parseInt(id));
 			
 			entity.setIsactive("No");
 			
-			categoryService.save(entity);
+			contestService.save(entity);
 			
-			return "redirect:/Admin/Dash/Category/Manage";
+			return "redirect:/Admin/Contest/Manage";
 		}
 		else
 			return UrlBase.redirect_login;
@@ -162,12 +182,12 @@ public class CategoryController
 
 		if(sr.isLogin())
 		{		
-			List<CategoryEntity> list=categoryService.getlist();
+			List<ContestEntity> list=contestService.getlist();
 
 			list=list.stream().filter(c -> c.getIsactive().equalsIgnoreCase("Yes")&&c.getIsdelete().equalsIgnoreCase("No")).collect(Collectors.toList());
 			
 			model.addAttribute("list_obj",list);
-			return UrlBase.category_isactive;
+			return UrlBase.contest_isactive;
 		}
 		else
 			return UrlBase.redirect_login;
@@ -181,12 +201,12 @@ public class CategoryController
 
 		if(sr.isLogin())
 		{		
-			List<CategoryEntity> list=categoryService.getlist();
+			List<ContestEntity> list=contestService.getlist();
 
 			list=list.stream().filter(c -> c.getIsactive().equalsIgnoreCase("No")&&c.getIsdelete().equalsIgnoreCase("No")).collect(Collectors.toList());
 			
 			model.addAttribute("list_obj",list);
-			return UrlBase.category_isdeactive;
+			return UrlBase.contest_isdeactive;
 		}
 		else
 			return UrlBase.redirect_login;
@@ -199,12 +219,12 @@ public class CategoryController
 
 		if(sr.isLogin())
 		{		
-			List<CategoryEntity> list=categoryService.getlist();
+			List<ContestEntity> list=contestService.getlist();
 
 			list=list.stream().filter(c -> c.getIsdelete().equalsIgnoreCase("Yes")).collect(Collectors.toList());
 			
 			model.addAttribute("list_obj",list);
-			return UrlBase.category_isdelete;
+			return UrlBase.contest_isdelete;
 		}
 		else
 			return UrlBase.redirect_login;
@@ -217,11 +237,11 @@ public class CategoryController
 
 		if(sr.isLogin())
 		{	
-			CategoryEntity entity=categoryService.getById(Integer.parseInt(id));
+			ContestEntity entity=contestService.getById(Integer.parseInt(id));
 			entity.setIsdelete("No");
 			
-			categoryService.save(entity);
-			return "redirect:/Admin/Dash/Category/isDeleteList";
+			contestService.save(entity);
+			return "redirect:/Admin/Contest/isDeleteList";
 		}
 		else
 			return UrlBase.redirect_login;
@@ -235,8 +255,8 @@ public class CategoryController
 
 		if(sr.isLogin())
 		{		
-			categoryService.delet(Integer.parseInt(id));			
-			return "redirect:/Admin/Dash/Category/isDeleteList";
+			contestService.delet(Integer.parseInt(id));			
+			return "redirect:/Admin/Contest/isDeleteList";
 		}
 		else
 			return UrlBase.redirect_login;
@@ -245,40 +265,50 @@ public class CategoryController
 	
 	
 	
-	/**@PostMapping("/")
-	public String saveCategory(@RequestBody CategoryEntity model)
-	{	
-		
-		
-		model.setIsactive(false);
-		model.setIsdelete(false);
-		model.setUqid(UUID.randomUUID()+"");
-		categoryService.save(model);	
-		return "Saved";
-	}
 	
-	
+	@GetMapping({"/SavePlan"})
 	@ResponseBody
-	@GetMapping("/")
-	public List<CategoryEntity> getCategory()
+	public String saveplan()
 	{
-		return categoryService.getlist();
-	}
-	
-	
-	
-	@ResponseBody
-	@GetMapping("{id}")
-	public CategoryEntity getCategoryById(@PathVariable int id)
-	{
-
-		if(categoryService.findByid(id).isPresent())
-		{
-			return categoryService.getById(id);
-		}
+		ContestPlanEntity model=new ContestPlanEntity();
 		
-		return new CategoryEntity(0, "Empty");
-
+		model.setName("Hello");
+		
+		PoolMemberPriceEntity en=new PoolMemberPriceEntity();
+		PoolMemberPriceEntity en2=new PoolMemberPriceEntity();
+		
+		en.setMember(5);
+		en.setPosition(1);
+		en.setPrice(200);
+		
+		en2.setMember(6);
+		en2.setPosition(4);
+		en2.setPrice(250);
+		
+		ArrayList<PoolMemberPriceEntity>list=new ArrayList<PoolMemberPriceEntity>();
+		
+		list.add(en);
+		list.add(en2);
+		
+		model.setMember(list);
+		
+		contestPoolDao.save(model);
+		
+		return "saved";
 	}
-	*/
+	
+	
+	@GetMapping({"/GetPlan"})
+	@ResponseBody
+	public List<ContestPlanEntity> getplan()
+	{
+		
+		List<ContestPlanEntity> list=contestPoolDao.findAll();
+		
+		list.forEach(System.out :: println);
+		
+		System.out.println("List size : "+list.size());
+		
+		return list;
+	}
 }

@@ -19,5 +19,10 @@ public class AdminServiceImp  implements AdminService
 	{
 		return adminDao.getAdminByUsernameAndPassword(username, password);
 	}
+
+	@Override
+	public AdminEntity getAdminByUqid(String uqid) {
+		return adminDao.getAdminByUqid(uqid);
+	}
 	
 }

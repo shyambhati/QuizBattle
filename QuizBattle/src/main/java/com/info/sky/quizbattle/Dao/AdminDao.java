@@ -14,4 +14,6 @@ public interface AdminDao extends JpaRepository<AdminEntity, Integer>
 {
 	
 	public AdminEntity getAdminByUsernameAndPassword(String username,String password);
+
+	public AdminEntity getAdminByUqid(String uqid);
 }
