@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="/base::mainlayout(~{::section})">
+<head>
+
+<meta charset=UTF-8>
+<title>Insert title here</title> 
+
+</head>
+<body>
+
+<section>
+ 
+		<div class="row p-2" >
+        	
+        	<div class="col-lg-12">
+        		<div class="card  p-0 border-info" >
+        		<h5 class="card-header text-white bg-info">Add New Contest Rule Details</h5>
+				  <div class="card-body p-2">
+				    <form th:action="@{SaveRule}" 
+				    		method="post" 
+				    		th:object="${contestRulesBean}" 
+				    		class="row"
+				    		accept-charset="UTF-8">
+		        		<div class="col-lg-12">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{name}" required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						 <div class="col-lg-12 ">
+							  
+							   <div class="form-group">
+							    <label  class=" col-form-label">Rules Details:</label>
+							     <textarea class="form-control " 
+							     th:field="*{contestRules}"
+							     id="editor" required="required">Enter text here.....</textarea>
+							  </div>
+						</div>
+						
+						<div class="col-lg-12 m-0 p-0">
+							<div class="form-group row m-0 p-0">
+								<div class="col-sm-9">
+									<!-- <button class="btn btn-success" type="button"
+									data-toggle="modal" data-target="#hindiTyping">Hindi Typing</button> -->
+								</div>
+							    <div class="col-sm-3">
+							      <button type="submit" class="btn btn-primary btn-block m-0">Save</button> 
+							    </div>
+							</div>
+						</div>
+					</form>
+				  </div>
+				</div>
+        	
+	        	
+	        </div>
+        
+        </div>
+        
+		<div class="row p-2">
+		    <div class="col-lg-12">
+		      <div class="card p-0 border-info">
+		      <h5 class="card-header text-white bg-info">Category Data List
+		      </h5>
+		      <div class="card-body p-0">
+		        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
+		        	
+		          <thead class="table-secondary">
+		            <tr>
+		              <th>sl</th>
+		              <th style="min-width: 200px; max-width: 200px;">Name</th>
+		              <th>Details</th>
+		              <th style="min-width: 150px; max-width: 150px;">Add By</th>
+		              <th style="min-width: 250px; max-width: 250px;">Date</th>
+		              <th style="min-width: 150px; max-width: 150px;">Action</th>
+		            </tr>
+		          </thead>
+		          <tbody>
+		          	<tr th:if="${list_obj.empty}">
+			            <td colspan="5" class="text-center"> No Category Available </td>
+			        </tr>
+			        
+			        <tr th:each="obj : ${list_obj}">
+			            <th th:text="${obj.id}"> ID </th>
+			            <td th:text="${obj.name}"> Name</td>
+			            <td th:utext="${obj.contestRules}"> Text</td>
+			            <td th:text="${obj.add_by_model.name}"> Name</td>
+			            <td th:text="${#dates.format(obj.createdAt, 'dd-MMM-yyyy HH:mm:ss a')}"> Name</td>
+			            <td>
+			            
+			            	
+	              			<a class="text-white btn btn-sm btn-info px-2 py-1" 
+	              				href="#"
+	              				 title="Edit"
+	              				 th:attr="onclick='myRulesFunction(\'' + ${obj.name}+  '\',\'' + ${obj.contestRules}+  '\',\'' + ${obj.id}+  '\');'"
+	              				 ><i class="fa fa-pencil"></i></a>
+	              					
+			            	<a class="text-white btn btn-sm btn-danger px-2 py-1" 
+	              				href="#" th:href="@{RemoveRule(thisid=${obj.id})}"><i class="fa fa-trash"></i></a>
+	              				
+			            </td>
+			        </tr>
+		            <!-- <tr>
+		              <th scope="row">1</th>
+		              <td>Mark</td>
+		              <td>Otto</td>
+		              <td>@mdo</td>
+		              <td>@mdo</td>
+		            </tr> -->
+		            
+		          </tbody>
+		        </table>
+		      </div>
+		    </div>
+		    </div>
+		  </div>
+		  
+		  
+		  
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Update Rules Details Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       	<form th:action="@{UpdateRule}" method="post" th:object="${contestRulesBean}" class="">
+       		
+  		<div class="col-lg-12">
+			  <div class="form-group row">
+			    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+			    <div class="col-sm-9">
+			      <input type="text"  class="form-control" th:field="*{name}" id="rulename" required="required">
+			    </div>
+			  </div>
+		 </div>
+		 
+		 <div class="col-lg-12 ">
+		<hr class="m-0">
+			  <div class="form-group modal_form">
+			    <label  class=" col-form-label">Rules Details</label>
+			     <textarea class="form-control"   th:field="*{contestRules}" id="detail" required="required">Enter text here.....</textarea>
+			  </div>
+		</div>
+		
+		
+		
+		
+		<input type="hidden" id="ruleId" th:field="*{id}">
+	
+		<div class="col-lg-12">
+			<div class="form-group row">
+			    <div class="col-sm-3 offset-md-9">
+			      <button type="submit" class="btn btn-primary btn-block">Update Now!</button> 
+			    </div>
+			</div>
+		</div>
+		  
+		  
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="hindiTyping" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Type Hindi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" rows="6" placeholder="Type Message  Here...." id="hindiTyped"></textarea><hr>
+        
+        <p>Example : MERA NAAM = मेरा नाम </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+					
+					
+
+<script type="text/javascript">
+$(document).ready(function () {
+   /*  document.getElementById("editor").innerHTML = "<h1>Paragraph changed!</h1>"; */
+     $('#editor').wysiwyg({
+	    highlight: true,
+	    debug: false,
+	    toolbar: [
+	        ['operations', ['undo', 'rendo', 'cut', 'copy', 'paste']],
+	        ['styles'],
+	        ['fonts', ['select', 'size']],
+	        ['text', ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript'/* , 'font-color', 'bg-color' */]],
+	        ['align', ['left', 'center', 'right', 'justify']],
+	        ['lists', ['unordered', 'ordered']],
+	        ['components', ['table', /*'chart'*/]],
+	        ['intervals', ['line-height', 'letter-spacing']],
+	        ['insert', [/* 'emoji', 'symbol', */ /*'bookmark'*/]],
+	        ['special', [/* 'unformat', 'visual', 'clean' */]],
+	        /*['fullscreen'],*/
+	      ],
+		});
+   
+     
+   
+     
+});
+</script>
+</section>
+
+
+</body>
+</html>

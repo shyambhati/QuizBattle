@@ -104,25 +104,89 @@
 		        </ul>
 		      </li>
 		      
-		       <li class="nav-item ">
+		      
+		      <li class="nav-item ">
 		        <a href="#quiz_sub_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link text-dark">
-		        <i class="fa fa-book mr-3 text-primary fa-fw"></i> Contest</a>
+		        <i class="fa fa-book mr-3 text-primary fa-fw"></i> Contest Pool</a>
 		        <ul class="collapse list-unstyled" id="quiz_sub_menu">
-		            <a href="#" th:href="@{/Admin/Contest/Manage}">
+		            <a href="#" th:href="@{/Admin/Contest/Pool/New}">
 		              <li>
+		                <i class="fa fa-angle-double-right"></i>Add New Pool
+		              </li>
+		            </a>
+		            
+		            <a href="#" th:href="@{/Admin/Contest/Pool/Manage}">
+		              <li >
 		                <i class="fa fa-angle-double-right"></i>Manage
 		              </li>
 		            </a>
-		            <a href="#">
+		            
+		            <a href="#" th:href="@{/Admin/Contest/Pool/ActiveList}">
 		              <li >
-		                <i class="fa fa-angle-double-right"></i>Manage Category
+		                <i class="fa fa-angle-double-right"></i>Active List
+		              </li>
+		            </a>
+		            
+		             <a href="#" th:href="@{/Admin/Contest/Pool/DeActiveList}">
+		              <li >
+		                <i class="fa fa-angle-double-right"></i>DeActive List
+		              </li>
+		            </a>   
+		            
+		             <a href="#" th:href="@{/Admin/Contest/Pool/isDeleteList}">
+		              <li >
+		                <i class="fa fa-angle-double-right"></i>Deleted List
+		              </li>
+		            </a>
+ 
+		        </ul>
+		      </li>
+		      
+		       <li class="nav-item ">
+		        <a href="#quiz_sub_menu1" data-toggle="collapse" 
+		        aria-expanded="false" class="dropdown-toggle nav-link text-dark">
+		        <i class="fa fa-book mr-3 text-primary fa-fw"></i> Contest</a>
+		        <ul class="collapse list-unstyled" id="quiz_sub_menu1">
+		            <a href="#" th:href="@{/Admin/Contest/New}">
+		              <li>
+		                <i class="fa fa-angle-double-right"></i>Add New
+		              </li>
+		            </a>
+		            <a href="#" th:href="@{/Admin/Contest/Manage}">
+		              <li >
+		                <i class="fa fa-angle-double-right"></i>Manage Contest
+		              </li>
+		            </a>
+		            <a href="#" th:href="@{/Admin/Contest/ActiveList}">
+		              <li >
+		                <i class="fa fa-angle-double-right"></i>Active Contest List
+		              </li>
+		            </a>
+		            <a href="#" th:href="@{/Admin/Contest/DeActiveList}">
+		              <li >
+		                <i class="fa fa-angle-double-right"></i>De-Active Contest List
+		              </li>
+		            </a>
+		            
+		             <a href="#" th:href="@{/Admin/Contest/isDeleteList}">
+		              <li >
+		                <i class="fa fa-angle-double-right"></i>Deleted Contest List
+		              </li>
+		            </a>
+		            
+		            
+		            
+		            
+		            <a href="#" th:href="@{/Admin/Contest/Rules}">
+		              <li>
+		                <i class="fa fa-angle-double-right"></i>Contest Rules
 		              </li>
 		            </a>
 		        </ul>
 		      </li>
 		    </ul>
 		
-		    <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+		    <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">User</p>
 		
 		    <ul class="nav flex-column bg-white mb-0">
 		      <li class="nav-item">

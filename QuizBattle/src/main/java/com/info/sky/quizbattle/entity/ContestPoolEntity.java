@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "contest_rank_plan_table")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
-public class ContestPlanEntity 
+public class ContestPoolEntity extends CommonEntity
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,4 +42,7 @@ public class ContestPlanEntity
 	@Column(name = "member_price")
 	private ArrayList<PoolMemberPriceEntity> member;
 
+	
+	@Column(name = "extra_pool_string")
+	private String extra;
 }

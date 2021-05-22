@@ -5,7 +5,7 @@ th:replace="/base::mainlayout(~{::section})">
 <meta charset="ISO-8859-1">
 
 </head>
-<body >
+<body>
 
 <section>
 <style>
@@ -33,77 +33,53 @@ th:replace="/base::mainlayout(~{::section})">
 		          <thead class="bg-warning">
 		            <tr>
 		              <th>sl</th>
-		              <th>Name</th>
-		              <th  style="min-width: 160px;">Question</th>
-		              <th style="min-width: 90px;">Options 1</th>
-		              <th style="min-width: 90px;">Options 2</th>
-		              <th style="min-width: 90px;">Options 3</th>
-		              <th style="min-width: 90px;">Options 4</th>
-		              <th >Answer</th>
-		               <th style="min-width: 90px;">Quiz Time</th>
-		               <th style="min-width: 90px;">Total Time</th>
+		              <th  style="min-width: 160px;">Pool Name</th>
 		               
 		               <th style="min-width: 100px;">Pool Size</th>
 		               <th style="min-width: 100px;">Pool Price</th>
 		               <th style="min-width: 100px;">Entry Fees</th>
 		               <th style="min-width: 70px;">Rank</th>
 		               
-		               <th style="min-width: 120px;">Contest Date</th>
-		               
 		              <th style="min-width: 90px;">Add By</th>
-		              <th style="min-width: 120px;">Contest Status</th>
 		              
 		               <th style="min-width: 120px;">Status</th>
-		              
-	
-		              
 		              
 		              <th style="min-width: 120px;">Action</th>
 		            </tr>
 		          </thead>
 		          <tbody>
+		          
 			        <tr th:each="obj : ${list_obj}">
 			            <th th:text="${obj.id}"> ID </th>
 			            <td th:text="${obj.name}"> Name</td>
-			            <td th:utext="${obj.question}"> Question</td>
-			            <td  th:text="${obj.option1}">Option 1</td> 
-			            <td  th:text="${obj.option2}">Option 2</td> 
-			            <td  th:text="${obj.option3}">Option 3</td> 
-			            <td  th:text="${obj.option4}">Option 4</td> 
-			            <td  th:text="${obj.answer}">Answer</td> 
 			            
-			            <td  th:text="${obj.quiztime+' Seconds'}">Quiz Time</td> 
-			            <td  th:text="${obj.totaltime+' Minutes'}">Quiz Time</td> 
+			            <td  th:text="${obj.poolSize}">poolSize</td> 
+			            <td  th:text="${obj.poolPrice}">poolPrice</td> 
+			            <td  th:text="${obj.entryFee}">entry_fees</td> 
 			            
-			            <td  th:text="${obj.plan_model.poolSize}">poolSize</td> 
-			            <td  th:text="${obj.plan_model.poolPrice}">poolPrice</td> 
-			            <td  th:text="${obj.plan_model.entryFee}">entry_fees</td> 
+			            <td th:utext="${#strings.replace(obj.extra,'#','<br>')}"> Rank</td>
 			            
-			            <td th:utext="${#strings.replace(obj.plan_model.extra,'#','<br>')}"> Rank</td>
-			            
-			            <td th:text="${#temporals.format(obj.startDateTime, 'dd-MM-yyyy hh:mm:ss a')}"> Name</td>
 			            
 			            <td th:text="${obj.add_by_model.name}"> admin Name</td>
-			            <td th:text="${obj.contestStatus}"> Contest Status</td>
 			            
 			             <td th:text="${obj.isactive}">Status</td>
 			            
-			            
-			            <!-- <td th:text="${#dates.format(obj.createdAt, 'dd-MMM-yyyy HH:mm:ss a')}"> Name</td> -->
-			           
 			            <td>
 			            
 	              			<a class="text-white btn btn-sm btn-warning px-2 py-1" 
-	              				href="#" th:href="@{Restore(thisid=${obj.id})}"
-	              				 title="Restore"
-	              				 onclick="if(!(confirm('Are you sure'))) return false"><i class="fa fa-upload"></i></a>	
+	              				href="#" th:href="@{DeActive1(thisid=${obj.id})}"
+	              				th:classappend="${obj.isactive=='No'} ? Active : demo"
+	              				 title="De-Active"><i class="fa fa-close"></i></a> 
 	              				
-			            	<a class="text-white btn btn-sm btn-danger px-2 py-1" 
-	              				href="#" th:href="@{Delete(thisid=${obj.id})}"
-	              				onclick="if(!(confirm('Are you sure, it will delete Permanently'))) return false"
-	              				title="Permanently Delete"><i class="fa fa-trash"></i></a>
 			            </td>
 			        </tr>
+		            <!-- <tr>
+		              <th scope="row">1</th>
+		              <td>Mark</td>
+		              <td>Otto</td>
+		              <td>@mdo</td>
+		              <td>@mdo</td>
+		            </tr> -->
 		            
 		          </tbody>
 		        </table>

@@ -34,13 +34,11 @@ public  class CommonEntity implements Serializable
 	@CreationTimestamp
     private Date createdAt;
 
-
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a")
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private Date updatedAt; 
-    
-	
+    	
 	@Column(name = "isdelete")
 	private String isdelete;
 	

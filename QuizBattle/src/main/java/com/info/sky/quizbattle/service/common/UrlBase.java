@@ -14,11 +14,22 @@ public class UrlBase
 	public static String category_isdeactive="category_page/category_is_deactive";
 	public static String category_isdelete="category_page/category_is_delete";
 	
+	public static String categoryManageRedirect="redirect:/Admin/Category/Manage";
 	
 	/* Contest Pages */
-	public static String contest_manage="contest_page/contest";
+	public static String contest_new="contest_page/contest";
+	public static String contest_manage="contest_page/manage";
 	public static String contest_isactive="contest_page/contest_is_active";
-	public static String contest_isdeactive="contest_page/contest_is_deactive";
+	public static String contest_isdeactive="contest_page/contes_is_deactive";
 	public static String contest_isdelete="contest_page/contest_is_delete";
+	
+	public static String contest_rules="contest_page/rules";
+	
+	
+	public static String contest_plan_manage="contest_pool/manage";
+	public static String contest_plan_new="contest_pool/pool";
+	public static String contest_plan_isactive="contest_pool/active";
+	public static String contest_plan_isdeactive="contest_pool/deactive";
+	public static String contest_plan_isdelete="contest_pool/isdeleted";
 	
 }

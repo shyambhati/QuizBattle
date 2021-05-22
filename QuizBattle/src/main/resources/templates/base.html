@@ -3,8 +3,8 @@
   th:fragment="mainlayout(content)">
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
 <title>Insert title here</title>
@@ -12,9 +12,47 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
+
+
+
+<link th:href="@{/bootstrat_editor/css/highlight.min.css}" rel="stylesheet">
+<link th:href="@{/bootstrat_editor/css/wysiwyg.css}" rel="stylesheet">
+
+
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+
+
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+ 
+ <script th:src="@{/bootstrat_editor/js/highlight.js}"></script>
+<script th:src="@{/bootstrat_editor/js/wysiwyg.js}"></script>
+
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+    <link href="http://www.google.com/uds/modules/elements/transliteration/api.css"
+      type="text/css" rel="stylesheet"/>
+
+<script th:src="@{/js/main.js}"></script>
+
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+
+
+
+
+
 </head>
-<body >
+<body onload="StartTimers();" onmousemove="ResetTimers();">
 
 
 
@@ -31,9 +69,34 @@
 
 
 
-<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
-<script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/main.js}"></script>
+
+
+
+
+<div class="modal fade bg-light " id="timeoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+         <h1 class="text-center">Session About To Timeout</h1>
+	    <p>You will be automatically logged out in 2 minute.<br />
+	    To remain logged in move your mouse over this window.
+      </div>
+      <div class="modal-footer bg-danger text-white p-0 m-0" >
+        <button type="button" class="btn btn-danger btn-block m-0 p-3" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 </body>
 </html>

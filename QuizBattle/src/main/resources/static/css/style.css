@@ -103,6 +103,28 @@ body {
 	border-radius:10px;
 }
 
+::-webkit-scrollbar {
+    width: 4px;
+     height: 4px;  
+}
+
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background: rgba(192,192,192,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4); 
+}
+
 
 .sidebar_menu_div .nav-link:hover{
     background:#f3f2f2;
@@ -346,6 +368,49 @@ margin-top: 0px!important;
 
 
 
+.richText-btn .fa-video-camera ,.richText-help 
+{
+	display: none!important;
+	visibility: hidden!important;
+}
+.richText .richText-toolbar ul li a .richText-dropdown-outer 
+{
+    z-index: 999!important;
+}
 
 
 
+
+.hide
+{
+	display: none!important;
+}
+
+
+
+
+
+
+
+.btn-default {
+    color: #333!important;
+    background-color: #fff!important;
+    border-color: #ccc!important;
+}
+
+#editor .dropdown-menu 
+{
+	background: #fff!important;
+}
+
+
+#toolbarGroup-fonts ul li a
+{
+	color: #111111!important;
+	text-decoration: none;
+}
+
+#toolbarGroup-fonts ul 
+{
+	padding: 10px;
+}

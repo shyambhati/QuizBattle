@@ -12,9 +12,8 @@ public class PoolMemberPriceEntity implements Serializable
 {
 	
 	private static final long serialVersionUID = 1L;
-	private int position;
-	private int price;
-	private int member;
 	
+	private int price;
+	private String memberRank;
 	
 }

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="/base::mainlayout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body >
+
+<section>
+<style>
+
+</style>
+ 
+		<div class="row p-2" >
+        	
+        	<div class="col-lg-12">
+        		<div class="card  p-0 border-info" >
+        		<h5 class="card-header text-white bg-info">Add New Contest Pool Details</h5>
+				  <div class="card-body p-2">
+				    <form th:action="@{Save}" 
+				    		method="post" 
+				    		th:object="${contestPoolBean}" 
+				    		class="row">
+				    	
+						
+		        		<div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Pool Name</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{name}"  
+							      placeholder="Enter name.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						<div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label"> Pool Size</label>
+							    <div class="col-sm-9">
+							      <input class="form-control" type="number" 
+							      min="2" th:field="*{poolSize}" id="poolSize" 
+							      onkeyup="changePoolSize()"
+							      onchange="changePoolSize()">
+							    </div>
+							  </div>
+						 </div> 
+						 
+						 <div class="col-lg-6">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Min Pool Size</label>
+							    <div class="col-sm-9">
+							     <input class="form-control" id="minPoolSize"
+							      min="2" th:field="*{minPoolSize}"  readonly="readonly">
+							    </div>
+							  </div>
+						</div>
+						
+						<div class="col-lg-6">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Pool Price</label>
+							    <div class="col-sm-9">
+							     <input class="form-control" type="number" 
+							      min="100" th:field="*{poolPrice}" id="poolPrice" value="5000">
+							    </div>
+							  </div>
+						</div>
+						
+						<div class="col-lg-6">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Entry Price</label>
+							    <div class="col-sm-9">
+							     <input class="form-control" type="number" 
+							      min="5" th:field="*{entryFee}" id="entryFee" >
+							    </div>
+							  </div>
+						</div>
+						
+						<div class="col-lg-6">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Status</label>
+							    <div class="col-sm-9">
+							     <select class="form-control" th:field="*{isactive}">
+							      	<option value="No">De-Active</option>
+							      	<option value="Yes">Active</option>
+							      </select>
+							    </div>
+							  </div>
+						</div>
+						
+						<div class="col-lg-12">
+							<table class="table table-sm table-bordered" id="user_table">
+								<thead class=" bg-light">
+									<tr>
+										<th>Rank</th>
+										<th>Price</th>
+										<th>
+											Action 
+											<button class="btn btn-sm btn-success" 
+											type="button" onclick="insertTableRow()">Add New Rank</button>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- <tr>
+										<td>
+											<input class="form-control"  type="text" value="1"/>
+										</td>
+										<td>
+											<input class="form-control"  type="number" value="200"/>
+										</td>
+										<td>
+											<button class="btn btn-sm btn-danger">Remove</button>
+										</td>
+									</tr> -->
+									
+								</tbody>
+								
+								<tfoot class="bg-light">
+									<tr>
+									<input type="hidden" th:field="*{extra}"  name="extra" id="rankAllValue"/>
+										<td id="totalMemeber">Total Member :0</td>
+										<td id="totalAmount">Total Amount : 0</td>
+										<td id="totalProfit">Your Profit : 0</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						
+						
+						<div class="col-lg-12 p-0 m-0">
+							<div class="form-group row m-0 p-0">
+							    <div class="col-sm-3 offset-md-9 p-0">
+							      <button type="submit" class="btn btn-primary btn-block m-0">Save</button> 
+							    </div>
+							</div>
+						</div>
+					</form>
+				  </div>
+				</div>
+        	
+	        	
+	        </div>
+        
+        </div>
+        
+		
+		  
+		  
+
+
+ 
+ 
+
+ 
+ 
+ 
+ <script type="text/javascript">
+ function insertTableRow()
+ {
+	 /* feeListTableUpdate
+ 	
+	 var tableLength=document.getElementById("feeListTableUpdate").rows.length;
+	  var table=document.getElementById("feeListTableUpdate");
+	  var finalRow=tableLength-1; */
+	 //alert("work");
+	  
+	  
+	  
+	  
+	  var tableLength=document.getElementById("user_table").rows.length;
+	  
+	   
+	  var rowid=tableLength-1;
+	  var table = document.getElementById("user_table");
+	  var row = table.insertRow(rowid);
+	  
+	  row.id = 'POOL_PRICE_'+rowid+'td';
+	  
+	   var cell1 = row.insertCell(0);
+	   var cell2 = row.insertCell(1);
+	   var cell3 = row.insertCell(2);
+	  
+	 
+	 
+   	cell1.innerHTML = '<input placeholder="Rank" class="form-control" onchange="updateTable()" onkeyup="updateTable()" value="'+rowid+'-4" id="rank_'+rowid+'"/>';
+   	cell2.innerHTML = '<input placeholder="Price" class="form-control" onchange="updateTable()" onkeyup="updateTable()" type="number" value="50"  id="price_'+rowid+'"/>';
+   	cell3.innerHTML = '<button id="'+rowid+'td" class="btn btn-xs btn-danger" onclick="removeTable(this.id)"><i class="fa fa-close"></i></button>';
+   	updateTable();
+ }
+ 
+ function removeTable(id)
+ {
+ 	$('#POOL_PRICE_'+id).remove();
+ 	feeListTableUpdate();
+ }
+ 
+/*  function updateTable()
+ {
+	  var tableLength=document.getElementById("user_table").rows.length;
+	  var i;
+	  
+	  var totalUser=0;
+	  for (i = 1; i < tableLength-1; i++) {
+		  var a = document.getElementById("rank_"+i).value;
+		  totalUser=totalUser+parseInt(a);
+	  }
+	  
+	  document.getElementById("totalMemeber").innerHTML = "Total Member : "+totalUser;
+  
+ } */
+ 
+ function updateTable()
+ {
+	 
+	 var final_value="";
+	 
+	 
+	  var tableLength=document.getElementById("user_table").rows.length;
+	  var i;
+	  
+	  var totalUser=0;
+	  var totalAmount=0;
+	  for (i = 1; i < tableLength-1; i++) {
+		  var a = document.getElementById("rank_"+i).value;
+		  var price = parseInt(document.getElementById("price_"+i).value);
+		  
+		  var v1=a+"/"+price;
+		  
+		  if(i==1)
+			  final_value=v1;
+		  else
+			  final_value=final_value+"#"+v1;
+		  
+		  
+		  var res = a.split("-");
+		  var user_length =res.length;
+		  
+		  var user=0;
+		  if(user_length>1)
+		  {
+			  var n1=parseInt(res[0]);
+			  var n2=parseInt(res[1]);
+			  
+			  if(n2>n1)
+			  	user=(n2-n1)+1;
+			  else
+				  user=1;
+		  }
+		  else
+		   {
+			  user=1;
+		   }
+		  
+		  totalUser=totalUser+user;
+		  
+		  
+		  
+		  totalAmount=totalAmount+(user*price);
+		 
+ 
+			
+	  }
+	  
+	  
+	 var poolSize= parseInt(document.getElementById("poolSize").value);
+	 
+	 var entryFee= parseInt(document.getElementById("entryFee").value);
+
+	  document.getElementById("totalMemeber").innerHTML = "Total Member : "+totalUser;
+	  
+	  document.getElementById("totalAmount").innerHTML = "Total Amount : "+totalAmount;
+	  
+	  var v1=(poolSize*entryFee)-totalAmount;
+	  document.getElementById("totalProfit").innerHTML = "Total Profit : "+poolSize+" x "+entryFee+" = "+(poolSize*entryFee)+" - "+totalAmount+" = "+v1;
+	  
+	   
+	  document.getElementById("rankAllValue").value = final_value;
+	  
+	  
+	  
+ }
+ 
+ 
+ function changePoolSize()
+ {
+	 var n1=document.getElementById("poolSize").value;
+	 document.getElementById("minPoolSize").value=n1;
+ }
+
+ </script>
+</section>
+
+</body>
+</html>

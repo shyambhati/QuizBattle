@@ -8,6 +8,17 @@ th:replace="/base::mainlayout(~{::section})">
 <body >
 
 <section>
+<style>
+.richText-btn .fa-video-camera ,.richText-help 
+{
+	display: none!important;
+	visibility: hidden!important;
+}
+.richText .richText-toolbar ul li a .richText-dropdown-outer 
+{
+    z-index: 999!important;
+}
+</style>
  
 		<div class="row p-2" >
         	
@@ -19,9 +30,22 @@ th:replace="/base::mainlayout(~{::section})">
 				    		method="post" 
 				    		th:object="${contestBean}" 
 				    		class="row">
-		        		<div class="col-lg-4">
+				    	
+				    	 <div class="col-lg-6">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Select Category</label>
+							    <div class="col-sm-9">
+							     <select class="form-control" th:field="*{category_model}" required="required">
+							      	<option value="0">Select Category</option>
+							      	<option th:each="obj : ${category_list_obj}" th:value="${obj.id}" th:text="${obj.name}">Categoryname</option>
+							      </select>
+							    </div>
+							  </div>
+						</div>
+						
+		        		<div class="col-lg-6">
 							  <div class="form-group row">
-							    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Contest Name</label>
 							    <div class="col-sm-9">
 							      <input type="text"  class="form-control" th:field="*{name}"  
 							      placeholder="Enter name.." required="required">
@@ -29,10 +53,43 @@ th:replace="/base::mainlayout(~{::section})">
 							  </div>
 						 </div>
 						 
+						
+						
+						 <div class="col-lg-6">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Select Plan</label>
+							    <div class="col-sm-9">
+							    
+							     <select class="form-control" th:field="*{plan_model}" required="required">
+							      	<option value="0">Select Contest Plan</option>
+							      	<option th:each="obj : ${planlist}" th:value="${obj.id}" th:text="${obj.name}">Contes Plan Name</option>
+							     
+							      </select>
+							    </div>
+							  </div>
+						</div>
+						
+						
+						<div class="col-lg-6">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Contest Rule</label>
+							    <div class="col-sm-9">
+							    
+							     <select class="form-control" th:field="*{rule_model}" required="required">
+							      	<option value="0">Select Contest Rule</option>
+							      	<option th:each="obj : ${rule_list}" th:value="${obj.id}" th:text="${obj.name}">Contest Plan Name</option>
+							     
+							      </select>
+							    </div>
+							  </div>
+						</div>
+						<div class="col-lg-12 ">
+							<hr class="m-0 mb-1">
+						</div>
 						<div class="col-lg-4">
 							  <div class="form-group row">
-							    <label for="staticEmail" class="col-sm-4 col-form-label">Date-Time</label>
-							    <div class="col-sm-8">
+							    <label for="staticEmail" class="col-sm-3 col-form-label"> Date</label>
+							    <div class="col-sm-9">
 							      <input class="form-control" type="datetime-local" 
 							      th:field="*{startDateTime}" 
 							      id="startDateTime"
@@ -43,18 +100,93 @@ th:replace="/base::mainlayout(~{::section})">
 						 
 						 <div class="col-lg-4">
 						 	<div class="form-group row">
-							    <label for="staticEmail" class="col-sm-3 col-form-label">Status</label>
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Total-time</label>
 							    <div class="col-sm-9">
-							     <select class="form-control" th:field="*{isactive}">
-							      	<option value="No">De-Active</option>
-							      	<option value="Yes">Active</option>
+							     <select class="form-control" th:field="*{totaltime}">
+							      	
+							      	<option th:each="i : ${#numbers.sequence(1, 100)}" 
+							      	th:value="${i*10}" th:text="${i*10+' Minutes'} "></option>
 							      </select>
 							    </div>
 							  </div>
 						</div>
+						
 						<div class="col-lg-4">
+						 	<div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Quiz-time</label>
+							    <div class="col-sm-9">
+							     <select class="form-control" th:field="*{quiztime}">
+							      	<option th:each="i : ${#numbers.sequence(1, 9)}" 
+							      	th:value="${i*10}" th:text="${i*10+' seconds'} "></option>
+							      </select>
+							    </div>
+							  </div>
+						</div>
+						
+						
+						<div class="col-lg-12 ">
+						<hr class="m-0">
+							  <div class="form-group">
+							    <label  class=" col-form-label">Contest Question</label>
+							     <textarea class="form-control "  id="editor"
+							     rows="2" placeholder="Enter Your Question.." th:field="*{question}">Enter Your Question..</textarea>
+							  </div>
+						</div>
+						
+						<div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 1</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option1}"  
+							      placeholder="Enter option 1.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						 <div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 2</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option2}"  
+							      placeholder="Enter option 2.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						 <div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 3</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option3}"  
+							      placeholder="Enter option3.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						 
+						 <div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 4</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option4}"  
+							      placeholder="Enter option 4.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						
+						<div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Answer is </label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{answer}"  
+							      placeholder="Enter answer.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						
+						<div class="col-lg-6">
 							<div class="form-group row">
-							    <div class="col-sm-9 col-md-offset-3">
+							    <div class="col-sm-9 offset-md-3">
 							      <button type="submit" class="btn btn-primary btn-block">Save</button> 
 							    </div>
 							</div>
@@ -67,80 +199,7 @@ th:replace="/base::mainlayout(~{::section})">
 	        </div>
         
         </div>
-        
-		<div class="row p-2">
-		    <div class="col-lg-12">
-		      <div class="card p-0 border-info">
-		      <h5 class="card-header text-white bg-info">Contest Data List
-		      </h5>
-		      <div class="card-body p-0">
-		        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
-		        	
-		          <thead class="table-secondary">
-		            <tr>
-		              <th>sl</th>
-		              <th>Name</th>
-		              <th style="min-width: 90px;">Status</th>
-		              <th>Add By</th>
-		              <th>Add Date</th>
-		              <th>Contest Date</th>
-		              <th>Action</th>
-		            </tr>
-		          </thead>
-		          <tbody>
-		          	<tr th:if="${list_obj.empty}">
-			            <td colspan="5" class="text-center"> No Category Available </td>
-			        </tr>
-			        
-			        <tr th:each="obj : ${list_obj}">
-			            <th th:text="${obj.id}"> ID </th>
-			            <td th:text="${obj.name}"> Name</td>
-			            <td th:text="${obj.isactive=='Yes'} ? 'Active' : 'De-Active'"  > Name</td> 
-			            <!-- <td th:text="${obj.isactive}" > Name</td> -->
-			            <td th:text="${obj.add_by_model.name}"> Name</td>
-			            <td th:text="${obj.contestStatus}"> Contest Status</td>
-			            <!-- <td th:text="${#dates.format(obj.createdAt, 'dd-MMM-yyyy HH:mm:ss a')}"> Name</td> -->
-			            <td th:text="${#temporals.format(obj.startDateTime, 'dd-MM-yyyy hh:mm:ss a')}"> Name</td>
-			            <td>
-			            
-			            	<a class="text-white btn btn-sm btn-success px-2 py-1" 
-	              				href="#" th:href="@{Active(thisid=${obj.id})}"
-	              				th:classappend="${obj.isactive=='Yes'} ? disabled : demo"
-	              				 title="Active"><i class="fa fa-check"></i></a>	
-	              				
-	              			<a class="text-white btn btn-sm btn-warning px-2 py-1" 
-	              				href="#" th:href="@{DeActive(thisid=${obj.id})}"
-	              				th:classappend="${obj.isactive=='No'} ? Active : demo"
-	              				 title="De-Active"><i class="fa fa-close"></i></a>
-	              				
-	              			<a class="text-white btn btn-sm btn-info px-2 py-1" 
-	              				href="#"
-	              				 title="Edit"
-	              				 th:attr="onclick='editContestFunction(\'' + ${obj.name}+  '\',\'' + ${obj.startDateTime}+  '\',\'' + ${obj.isactive}+  '\',\'' + ${obj.id}+  '\');'"
-	              				 ><i class="fa fa-pencil"></i></a>
-	              					
-			            	<a class="text-white btn btn-sm btn-danger px-2 py-1" 
-	              				href="#" th:href="@{Remove(thisid=${obj.id})}"><i class="fa fa-trash"></i></a>
-	              				
-			            </td>
-			        </tr>
-		            <!-- <tr>
-		              <th scope="row">1</th>
-		              <td>Mark</td>
-		              <td>Otto</td>
-		              <td>@mdo</td>
-		              <td>@mdo</td>
-		            </tr> -->
-		            
-		          </tbody>
-		        </table>
-		      </div>
-		    </div>
-		    </div>
-		  </div>
-		  
-		  
-		  
+
 
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -204,6 +263,8 @@ th:replace="/base::mainlayout(~{::section})">
  
  <script type="text/javascript">
 
+
+ 
  function mindate()
  {
 
@@ -219,11 +280,39 @@ th:replace="/base::mainlayout(~{::section})">
  elem1.min = minDate
  }
  mindate();
+
  </script>
+ 
+ 
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	/* https://www.jqueryscript.net/text/wysiwyg-editor-bootstrap.html */
+   /*  document.getElementById("editor").innerHTML = "<h1>Paragraph changed!</h1>"; */
+     $('#editor').wysiwyg({
+	    highlight: true,
+	    debug: false,
+	    toolbar: [
+	        ['operations', ['undo', 'rendo', 'cut', 'copy', 'paste']],
+	        ['styles'],
+	        ['fonts', ['select', 'size']],
+	        ['text', ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript'/* , 'font-color', 'bg-color' */]],
+	        ['align', ['left', 'center', 'right', 'justify']],
+	        ['lists', ['unordered', 'ordered']],
+	        ['components', ['table', /*'chart'*/]],
+	        ['intervals', ['line-height', 'letter-spacing']],
+	        ['insert', [/* 'emoji', 'symbol', */ /*'bookmark'*/]],
+	        ['special', [/* 'unformat', 'visual', 'clean' */]],
+	        /*['fullscreen'],*/
+	      ],
+		});
+   
+     
+   
+     
+});
+</script>
 </section>
-
-
-
 
 </body>
 </html>
