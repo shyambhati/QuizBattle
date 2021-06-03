@@ -105,6 +105,7 @@ public class SessionRecord
 		session.invalidate();
     }
 	
+	
 	public boolean isLogin()
 	{
 		String val=(String)session.getAttribute("loginStatus");

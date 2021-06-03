@@ -2,11 +2,13 @@ package com.info.sky.quizbattle.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,7 +18,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Setter @Getter @AllArgsConstructor @NoArgsConstructor
 @Table(name = "user_table")
 public class UserEntity 
 {
@@ -27,18 +35,26 @@ public class UserEntity
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "email")
+	
+	@Column(name = "email",unique = true)
 	private String email;
 	
-	@Column(name = "phone")
+	@JsonIgnore
+	@Column(name = "password",unique = true)
+	private String password;
+	
+	@Column(name = "phone",unique = true)
 	private String phone;
 	
+	@JsonIgnore
 	@Column(name = "otp")
 	private String otp;
 	
+	@JsonIgnore
 	@Column(name = "isactive")
 	private boolean isactive;
 	
+	@JsonIgnore
 	@Column(name = "isLogin")
 	private boolean isLogin;
 	
@@ -60,83 +76,20 @@ public class UserEntity
 	@Column(name = "token")
 	private String token;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getOtp() {
-		return otp;
-	}
-
-	public void setOtp(String otp) {
-		this.otp = otp;
-	}
-
-	public boolean getIsactive() {
-		return isactive;
-	}
-
-	public void setIsactive(boolean isactive) {
-		this.isactive = isactive;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public String getUqid() {
-		return uqid;
-	}
-
-	public void setUqid(String uqid) {
-		this.uqid = uqid;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}	
+	@Column(name = "winning_amt")
+	private int winning_amt;
+	
+	@Column(name = "deposit_amt")
+	private int deposit_amt;
+	
+	@Column(name = "cash_amt")
+	private int cash_amt;
+	
+	@Column(name = "referCode")
+	private String referCode;
+	
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private UserEntity referBy;
+	
 }

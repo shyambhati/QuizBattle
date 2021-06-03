@@ -12,5 +12,5 @@ import com.info.sky.quizbattle.entity.CategoryEntity;
 @Transactional
 public interface CategoryDao extends JpaRepository<CategoryEntity, Integer>
 {
-
+	
 }

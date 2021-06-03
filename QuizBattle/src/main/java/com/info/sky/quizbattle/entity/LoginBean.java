@@ -1,4 +1,5 @@
 package com.info.sky.quizbattle.entity;
+
 public class LoginBean 
 {
 	private String username="";
@@ -7,6 +8,7 @@ public class LoginBean
 	private String role;
 	private String remberMe;
 	private String captcha;
+	
 	public String getUsername() {
 		return username;
 	}
