@@ -15,5 +15,8 @@ public interface ContestService
 	public void active(int id);
 	
 	
+	
 	public Optional<ContestEntity>  findByid(int id);
+	
+	public List<ContestEntity> getApilist();
 }

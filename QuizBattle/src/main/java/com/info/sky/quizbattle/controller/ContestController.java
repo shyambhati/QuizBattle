@@ -136,7 +136,7 @@ public class ContestController
 				contestBean.setStartDateTime(LocalDateTime.now());
 		    }
 			
-			System.out.println(contestBean.getContestQuestion());
+
 			
 			
 			AdminEntity admin=adminService.getAdminByUqid(sr.getAdminUnq());

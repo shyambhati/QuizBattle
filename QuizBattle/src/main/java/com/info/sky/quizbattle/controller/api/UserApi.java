@@ -16,6 +16,7 @@ import com.info.sky.quizbattle.service.common.Config;
 @ResponseBody
 @RequestMapping("/API/v1/{token}/User/")
 public class UserApi {
+	
 	@Autowired
 	private UserService userService;
 
@@ -27,7 +28,6 @@ public class UserApi {
 			return "Wrong token key!";
 	}
 
-	@ResponseBody
 	@GetMapping("/Login/{email}/{password}/")
 	public UserEntity login(@PathVariable String token, @PathVariable String email, @PathVariable String password) {
 		UserEntity model = new UserEntity();
@@ -39,7 +39,6 @@ public class UserApi {
 	}
 
 	@GetMapping(value = "/sendOtp/{email}/")
-	@ResponseBody
 	public String sendOtpAddress(@PathVariable String token, @PathVariable String email) {
 		if (Config.tokenKey.equals(token))
 			return userService.sendOtp(email);
@@ -48,7 +47,6 @@ public class UserApi {
 	}
 
 	@GetMapping(value = "/validateOtp/{email}/{otp}/")
-	@ResponseBody
 	public String validateOtp(@PathVariable String token, @PathVariable String email, @PathVariable String otp) {
 		if (Config.tokenKey.equals(token)) {
 			if (userService.existsByEmailAndOtp(email, otp))
@@ -60,7 +58,6 @@ public class UserApi {
 	}
 
 	@GetMapping(value = "/updatePassword/{email}/{password}/")
-	@ResponseBody
 	public String updatePassword(@PathVariable String token, @PathVariable String email,
 			@PathVariable String password) {
 		if (Config.tokenKey.equals(token)) {
@@ -71,7 +68,6 @@ public class UserApi {
 	
 	
 	@GetMapping(value = "/validateToken/{userToken}/")
-	@ResponseBody
 	public String validateTeken(@PathVariable String token, @PathVariable String userToken) {
 		if (Config.tokenKey.equals(token)) {
 			if (userService.existsByToken(userToken))

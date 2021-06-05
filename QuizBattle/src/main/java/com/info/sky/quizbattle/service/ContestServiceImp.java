@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.info.sky.quizbattle.Dao.CategoryDao;
@@ -44,15 +46,17 @@ public class ContestServiceImp implements ContestService {
 
 	@Override
 	public void active(int id) {
-		// TODO Auto-generated method stub
-
+	
 	}
 
 	@Override
 	public Optional<ContestEntity>  findByid(int id) {
-		// TODO Auto-generated method stub
-		
-		Optional<ContestEntity> obj=dao.findById(id);
-		return obj;
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<ContestEntity> getApilist() {
+		Pageable limit = PageRequest.of(0,1);
+		return dao.findAll(limit).toList();
 	}
 }

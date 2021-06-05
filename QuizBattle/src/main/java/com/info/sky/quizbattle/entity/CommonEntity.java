@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 @MappedSuperclass
 @Getter @Setter
@@ -27,22 +28,25 @@ public  class CommonEntity implements Serializable
 {
 	
 	private static final long serialVersionUID = 1L;
-	
-	
-	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a")
+		
+	/* @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a") */
+	@JsonIgnore
 	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp
     private Date createdAt;
 
-	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a")
+	/* @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss a") */
+	@JsonIgnore
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private Date updatedAt; 
     	
 	@Column(name = "isdelete")
+	@JsonIgnore
 	private String isdelete;
 	
 	@Column(name = "isactive")
+	@JsonIgnore
 	private String isactive;
 	
 	@Column(name = "uqid")

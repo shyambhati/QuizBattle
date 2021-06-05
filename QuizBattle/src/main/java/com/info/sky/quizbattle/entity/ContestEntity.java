@@ -36,31 +36,14 @@ public class ContestEntity extends CommonEntity
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDateTime;
 	
-	
 	@Column(name = "contest_status")
 	private String contestStatus;
-	
-	@Column(name = "contest_rules")
-	private String contestRules;
-	
-	@Column(name = "total_contest_question")
-	private String contestQuestion;
 	
 	@Column(name = "total_contest_totaltime")
 	private String totaltime;
 	
 	@Column(name = "total_contest_quiztime")
 	private String quiztime;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
-	private CategoryEntity category_model;
-	
-	@ManyToOne(cascade = CascadeType.MERGE)
-	private ContestRulesTextEntity rule_model;
-	
-	@ManyToOne(cascade = CascadeType.MERGE)
-	private ContestPoolEntity plan_model;
-	
 	
 	@Column(name = "contest_question")
 	private String question;
@@ -79,4 +62,13 @@ public class ContestEntity extends CommonEntity
 	
 	@Column(name = "contest_question_answer")
 	private String answer;
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private CategoryEntity category_model;
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private ContestRulesTextEntity rule_model;
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private ContestPoolEntity plan_model;
 }
