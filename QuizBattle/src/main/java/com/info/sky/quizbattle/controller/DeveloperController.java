@@ -19,6 +19,9 @@ import com.info.sky.quizbattle.entity.AdminEntity;
 import com.info.sky.quizbattle.service.DeveloperService;
 import com.info.sky.quizbattle.service.common.Uqid;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
+@Hidden
 @Controller
 @RequestMapping("Developer/")
 public class DeveloperController 

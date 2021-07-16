@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.info.sky.quizbattle.entity.dto.PoolMemberPriceEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

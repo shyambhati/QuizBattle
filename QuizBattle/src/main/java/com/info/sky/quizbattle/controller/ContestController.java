@@ -25,13 +25,17 @@ import com.info.sky.quizbattle.entity.CategoryEntity;
 import com.info.sky.quizbattle.entity.ContestEntity;
 import com.info.sky.quizbattle.entity.ContestPoolEntity;
 import com.info.sky.quizbattle.entity.ContestRulesTextEntity;
-import com.info.sky.quizbattle.entity.PoolMemberPriceEntity;
+import com.info.sky.quizbattle.entity.dto.PoolMemberPriceEntity;
 import com.info.sky.quizbattle.service.AdminService;
 import com.info.sky.quizbattle.service.CategoryService;
 import com.info.sky.quizbattle.service.ContestService;
 import com.info.sky.quizbattle.service.common.Uqid;
 import com.info.sky.quizbattle.service.common.UrlBase;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
+
+@Hidden
 @Controller
 @RequestMapping("/Admin/Contest/")
 public class ContestController 

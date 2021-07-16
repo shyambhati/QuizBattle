@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.info.sky.quizbattle.entity.CategoryEntity;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
+
+@Hidden
 @Controller
 public class MainController 
 {

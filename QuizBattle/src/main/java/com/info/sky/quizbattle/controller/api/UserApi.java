@@ -12,9 +12,12 @@ import com.info.sky.quizbattle.entity.UserEntity;
 import com.info.sky.quizbattle.service.UserService;
 import com.info.sky.quizbattle.service.common.Config;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @Controller
 @ResponseBody
 @RequestMapping("/API/v1/{token}/User/")
+@Tag(name = "User", description = "All User Related API")
 public class UserApi {
 	
 	@Autowired

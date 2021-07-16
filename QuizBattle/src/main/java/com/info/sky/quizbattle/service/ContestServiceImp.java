@@ -56,7 +56,16 @@ public class ContestServiceImp implements ContestService {
 
 	@Override
 	public List<ContestEntity> getApilist() {
-		Pageable limit = PageRequest.of(0,1);
-		return dao.findAll(limit).toList();
+		/*
+		 * Pageable limit = PageRequest.of(0,1); return dao.findAll(limit).toList();
+		 */
+		return dao.findAll();
+	}
+	
+	
+	@Override
+	public List<ContestEntity> getApilist(String categoryId) {
+		
+		return dao.findAll();
 	}
 }

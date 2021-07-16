@@ -11,6 +11,9 @@ public interface UserService {
 	/* validation */
 
 	public UserEntity login(String email, String password);
+	
+	
+	public UserEntity getUserByUqid(String uqid);
 
 	public boolean existsByToken(String token);
 

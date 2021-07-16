@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.info.sky.quizbattle.SessionRecord;
@@ -24,8 +25,11 @@ import com.info.sky.quizbattle.service.CategoryService;
 import com.info.sky.quizbattle.service.common.Uqid;
 import com.info.sky.quizbattle.service.common.UrlBase;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder.ParameterBinding.Unique;
 
+
+@Hidden
 @Controller
 @RequestMapping("/Admin/Category/")
 public class CategoryController {
@@ -39,7 +43,7 @@ public class CategoryController {
 	@Autowired
 	private AdminService adminService;
 
-	@RequestMapping("/Manage")
+	@RequestMapping(path = "/Manage",method = RequestMethod.GET)
 	public String dash(@ModelAttribute CategoryEntity categoryBean, Model model) {
 
 		if (sr.isLogin()) {

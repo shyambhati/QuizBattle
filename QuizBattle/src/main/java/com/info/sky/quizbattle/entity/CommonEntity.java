@@ -17,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -49,6 +50,8 @@ public  class CommonEntity implements Serializable
 	@JsonIgnore
 	private String isactive;
 	
+
+	@JsonProperty("uqid")
 	@Column(name = "uqid")
 	private String uqid;
 	

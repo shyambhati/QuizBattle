@@ -14,18 +14,18 @@ th:replace="./base::mainlayout(~{::section})">
         	
         	<div class="col-lg-12">
         		<div class="card  p-0 border-info" >
-        		<h5 class="card-header text-white bg-info">Add New Category Details</h5>
+        		<h5 class="card-header text-white bg-info">Add New Image Details</h5>
 				  <div class="card-body p-2">
-				    <form th:action="@{Save}" method="post" th:object="${categoryEntity}" class="row">
+				    <form th:action="@{Save}" method="post" enctype="multipart/form-data" class="row">
 		        		<div class="col-lg-4">
 							  <div class="form-group row">
-							    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Image</label>
 							    <div class="col-sm-9">
-							      <input type="text"  class="form-control" th:field="*{name}" >
+							      <input type="file" accept="image/png, image/jpeg"  class="form-control" th:name="image"  name="image">
 							    </div>
 							  </div>
 						 </div>
-						 <div class="col-lg-4">
+						 <!-- <div class="col-lg-4">
 						 	<div class="form-group row">
 							    <label for="staticEmail" class="col-sm-3 col-form-label">Status</label>
 							    <div class="col-sm-9">
@@ -35,7 +35,7 @@ th:replace="./base::mainlayout(~{::section})">
 							      </select>
 							    </div>
 							  </div>
-						</div>
+						</div> -->
 						<div class="col-lg-4">
 							<div class="form-group row">
 							    <div class="col-sm-9 col-md-offset-3">
@@ -55,7 +55,7 @@ th:replace="./base::mainlayout(~{::section})">
 		<div class="row p-2">
 		    <div class="col-lg-12">
 		      <div class="card p-0 border-info">
-		      <h5 class="card-header text-white bg-info">Category Data List
+		      <h5 class="card-header text-white bg-info">Image List
 		      </h5>
 		      <div class="card-body p-0">
 		        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
@@ -63,7 +63,7 @@ th:replace="./base::mainlayout(~{::section})">
 		          <thead class="table-secondary">
 		            <tr>
 		              <th>sl</th>
-		              <th>Name</th>
+		              <th>Image</th>
 		              <th style="min-width: 90px;">Status</th>
 		              <th>Add By</th>
 		              <th>Date</th>
@@ -72,12 +72,17 @@ th:replace="./base::mainlayout(~{::section})">
 		          </thead>
 		          <tbody>
 		          	<tr th:if="${list_obj.empty}">
-			            <td colspan="5" class="text-center"> No Category Available </td>
+			            <td colspan="5" class="text-center"> No Image Available </td>
 			        </tr>
 			        
 			        <tr th:each="obj : ${list_obj}">
 			            <th th:text="${obj.id}"> ID </th>
-			            <td th:text="${obj.name}"> Name</td>
+			          <td>
+							<img alt="" 
+							th:src="@{${'imageDisplay?id=' + obj.id}}"
+							style="max-height:80px; min-height:80px; max-width:120px; min-width: 120px;"
+							class="img_view">
+						</td>
 			            <td th:text="${obj.isactive=='Yes'} ? 'Active' : 'De-Active'"  > Name</td> 
 			            <!-- <td th:text="${obj.isactive}" > Name</td> -->
 			            <td th:text="${obj.add_by_model.name}"> Name</td>
@@ -93,26 +98,12 @@ th:replace="./base::mainlayout(~{::section})">
 	              				href="#" th:href="@{DeActive(thisid=${obj.id})}"
 	              				th:classappend="${obj.isactive=='No'} ? Active : demo"
 	              				 title="De-Active"><i class="fa fa-close"></i></a>
-	              				
-	              			<a class="text-white btn btn-sm btn-info px-2 py-1" 
-	              				href="#"
-	              				 title="Edit"
-	              				 th:attr="onclick='myFunction(\'' + ${obj.name}+  '\',\'' + ${obj.isactive}+  '\',\'' + ${obj.id}+  '\');'"
-	              				 ><i class="fa fa-pencil"></i></a>
 	              					
 			            	<a class="text-white btn btn-sm btn-danger px-2 py-1" 
 	              				href="#" th:href="@{Remove(thisid=${obj.id})}"><i class="fa fa-trash"></i></a>
 	              				
 			            </td>
-			        </tr>
-		            <!-- <tr>
-		              <th scope="row">1</th>
-		              <td>Mark</td>
-		              <td>Otto</td>
-		              <td>@mdo</td>
-		              <td>@mdo</td>
-		            </tr> -->
-		            
+			        </tr> 
 		          </tbody>
 		        </table>
 		      </div>
@@ -124,49 +115,7 @@ th:replace="./base::mainlayout(~{::section})">
 		  
 
 <!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Update Category Record</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       	<form th:action="@{Update}" method="post" th:object="${categoryEntity}" class="">
-       		
-  
-		  <div class="form-group row">
-		    <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
-		    <div class="col-sm-9">
-		      <input type="text"  class="form-control" id="categoryName" th:field="*{name}" required="required">
-		    </div>
-		  </div>
-	
-	 		<div class="form-group row">
-		    <label for="staticEmail" class="col-sm-3 col-form-label">Status</label>
-		    <div class="col-sm-9">
-		     <select class="form-control" th:field="*{isactive}" id="categoryStatus">
-		      	<option value="No">De-Active</option>
-		      	<option value="Yes">Active</option>
-		      </select>
-		    </div>
-		  </div>
-		  
-		  <input type="hidden" id="categoryId" th:field="*{id}">
-	
-		<div class="form-group row">
-		    <div class="col-md-9 offset-md-3">
-		      <button type="submit" class="btn btn-primary btn-block">Save</button> 
-		    </div>
-		</div>
-			
-		</form>
-      </div>
-    </div>
-  </div>
-</div>
+
 </section>
 
 

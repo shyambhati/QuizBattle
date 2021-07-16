@@ -27,6 +27,10 @@ public interface UserDao extends JpaRepository<UserEntity, Integer> {
 	UserEntity getByReferCode(String val);
 
 	UserEntity getByEmailAndPassword(String email, String password);
+	
+	UserEntity getByUqid(String uqid);
+	
+	
 
 	@Modifying
 	@Query("update UserEntity u set u.otp = :otp where u.email =:email")

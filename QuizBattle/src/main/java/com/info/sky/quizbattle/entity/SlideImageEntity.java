@@ -9,6 +9,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Entity
 @Table(name="slide_image_table")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
+@JsonIgnoreProperties("uqid")
 public class SlideImageEntity extends CommonEntity
 {
 	@Id
@@ -27,6 +29,6 @@ public class SlideImageEntity extends CommonEntity
 	
 	@JsonIgnore
 	@Lob
-	@Column(name = "image1")
-	private byte[] image1;
+	@Column(name = "image")
+	private byte[] image;
 }

@@ -25,6 +25,8 @@ public class Config
 	public static String apiBaseUrl = "/API/v1/{token}";
 	
 	
-	public static String rozorKeyId="rzp_test_1fchQ2cvsTPOTm";
-	public static String rozorSecretKey="hPK7bkjeXrn3JgV9Mvj32l4s";
+	public static String rozorKeyId="rzp_test_eY7fF7daSH5VDd";
+	public static String rozorSecretKey="xvqKUQP0x5sh4NVBL8UPL7BK";
+	public static String currency = "INR";
+	
 }

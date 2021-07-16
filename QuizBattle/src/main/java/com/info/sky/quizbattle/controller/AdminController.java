@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.info.sky.quizbattle.SessionRecord;
 import com.info.sky.quizbattle.service.CategoryService;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
+@Hidden
 @Controller
 @RequestMapping("/Admin")
 public class AdminController 

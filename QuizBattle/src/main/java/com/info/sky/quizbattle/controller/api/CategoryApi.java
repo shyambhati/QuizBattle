@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.info.sky.quizbattle.entity.CategoryEntity;
 import com.info.sky.quizbattle.service.CategoryService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @ResponseBody
 @Controller
 @RequestMapping("/API/v1/{token}/Category/")
+@Tag(name = "Category", description = "All Category Related API")
 public class CategoryApi {
 
 	@Autowired

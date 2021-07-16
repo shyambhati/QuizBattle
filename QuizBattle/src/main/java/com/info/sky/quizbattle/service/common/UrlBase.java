@@ -32,4 +32,6 @@ public class UrlBase
 	public static String contest_plan_isdeactive="contest_pool/deactive";
 	public static String contest_plan_isdelete="contest_pool/isdeleted";
 	
+	/* slide image */
+	public static String slide_image="other/slide_image";
 }

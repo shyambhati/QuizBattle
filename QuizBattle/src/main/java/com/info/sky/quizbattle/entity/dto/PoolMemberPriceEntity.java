@@ -1,4 +1,4 @@
-package com.info.sky.quizbattle.entity;
+package com.info.sky.quizbattle.entity.dto;
 
 import java.io.Serializable;
 

@@ -76,6 +76,16 @@ public class UserServiceImp implements UserService {
 			return model;
 	}
 
+	
+	
+	@Override
+	public UserEntity getUserByUqid(String uqid) {
+		
+			return userDao.getByUqid(uqid);
+	
+	}
+
+	
 	@Override
 	public boolean existsByToken(String token) {
 		return userDao.existsByToken(token);
