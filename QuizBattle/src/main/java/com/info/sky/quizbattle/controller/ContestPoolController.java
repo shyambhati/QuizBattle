@@ -14,7 +14,7 @@ import com.info.sky.quizbattle.SessionRecord;
 import com.info.sky.quizbattle.entity.AdminEntity;
 import com.info.sky.quizbattle.entity.ContestEntity;
 import com.info.sky.quizbattle.entity.ContestPoolEntity;
-import com.info.sky.quizbattle.entity.dto.PoolMemberPriceEntity;
+import com.info.sky.quizbattle.entity.PoolMemberPriceEntity;
 import com.info.sky.quizbattle.service.AdminService;
 import com.info.sky.quizbattle.service.CategoryService;
 import com.info.sky.quizbattle.service.ContestPoolService;

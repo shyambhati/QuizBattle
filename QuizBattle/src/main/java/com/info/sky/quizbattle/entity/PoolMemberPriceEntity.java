@@ -1,4 +1,4 @@
-package com.info.sky.quizbattle.entity.dto;
+package com.info.sky.quizbattle.entity;
 
 import java.io.Serializable;
 
@@ -10,10 +10,8 @@ import lombok.Setter;
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
 public class PoolMemberPriceEntity implements Serializable 
 {
-	
 	private static final long serialVersionUID = 1L;
 	
 	private int price;
 	private String memberRank;
-	
 }
