@@ -26,11 +26,12 @@ public class PraticeQuizApi {
 		
 		for(int i=1;i<=15;i++)
 		{
-			model=new PraticeQuizEntity(
-					
-					"This is Question "+i,"Option 1"
-					,"Option 2","Option 3","Option 4","Option 1");
-			list.add(model);
+			/*
+			 * model=new PraticeQuizEntity(
+			 * 
+			 * "This is Question "+i,"Option 1"
+			 * ,"Option 2","Option 3","Option 4","Option 1"); list.add(model);
+			 */
 			
 		}
 		

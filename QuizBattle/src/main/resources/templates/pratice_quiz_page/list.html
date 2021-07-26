@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="./base::mainlayout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title> 
+
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<section>
+ 
+		<div class="row p-2">
+		    <div class="col-lg-12">
+		      <div class="card p-0 border-info">
+		      <h5 class="card-header text-white bg-info">Data List
+		      </h5>
+		      <div class="card-body p-0">
+		        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
+		        	
+		          <thead class="table-secondary">
+		            <tr>
+		              <th>sl</th>
+		              <th>Question</th>
+		              <th>Option 1</th>
+		              <th>Option 2</th>
+		              <th>Option 3</th>
+		              <th>Option 4</th>
+		              
+		              <th style="min-width: 90px;">Add By</th>
+		              <th>Date</th>
+		              <th>Action</th>
+		            </tr>
+		          </thead>
+		          <tbody>
+		          	<tr th:if="${list_obj.empty}">
+			            <td colspan="5" class="text-center"> No Data Available </td>
+			        </tr>
+			        
+			        <tr th:each="obj : ${list_obj}">
+			            <th th:text="${obj.id}"> ID </th>
+			            <td th:text="${obj.question}"> Question</td>
+			            <td th:text="${obj.option1}"> Name</td>
+			             <td th:text="${obj.option2}"> Name</td>
+			              <td th:text="${obj.option3}"> Name</td>
+			               <td th:text="${obj.option4}"> Name</td>
+			               <td th:text="${obj.add_by_model.name}"> admin Name</td>
+			            <td th:text="${#dates.format(obj.createdAt, 'dd-MMM-yyyy HH:mm:ss a')}"> Name</td>
+			            <td>
+			            
+			            	<a class="text-white btn btn-sm btn-danger px-2 py-1" 
+	              				href="#" th:href="@{Delete(thisid=${obj.id})}"
+	              				onclick="if(!(confirm('Are you sure, it will delete Permanently'))) return false"
+	              				title="Permanently Delete"><i class="fa fa-trash"></i></a>
+	              				
+			            </td>
+			        </tr>
+		            
+		          </tbody>
+		        </table>
+		      </div>
+		    </div>
+		    </div>
+		  </div>
+		  
+		  
+</section>
+
+
+
+
+</body>
+</html>

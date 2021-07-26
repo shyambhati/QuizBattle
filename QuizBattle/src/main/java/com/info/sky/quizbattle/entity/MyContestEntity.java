@@ -21,24 +21,29 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class MyContestEntity {
 
+	@Schema(hidden = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Schema(description = "Enter contest Unique Id {uqid}")
 	@Column(name = "contestId")
 	private String contestId;
 	
+	@Schema(description = "Enter User Unique Id {uqid}")
 	@Column(name = "userId")
 	private String userId;
 	
 	@Column(name = "status")
 	private String status;
 	
+	@Schema(hidden = true)
 	@JsonIgnore
 	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp
     private Date createdAt;
 	
+	@Schema(hidden = true)
 	@JsonIgnore
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp

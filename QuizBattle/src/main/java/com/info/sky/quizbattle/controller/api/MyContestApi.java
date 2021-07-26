@@ -38,7 +38,7 @@ public class MyContestApi {
 			return "Wrong token key!";
 	}
 	
-	@GetMapping("/GetList/{userId}/")
+	@GetMapping("/Get/{userId}/")
 	public List<MyContestEntity> byUserId(@PathVariable String token,@PathVariable String userId) {
 		List<MyContestEntity> list =  myContestService.getByUserId(userId);
 		return list;

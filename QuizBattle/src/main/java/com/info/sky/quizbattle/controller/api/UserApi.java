@@ -80,4 +80,12 @@ public class UserApi {
 		} else
 			return "Wrong token key!";
 	}
+	
+	
+	
+	
+	@GetMapping("/GetByUqid/{uqid}/")
+	public UserEntity getUser(@PathVariable String token, @PathVariable String uqid) {
+			return userService.getUserByUqid(uqid);
+	}
 }

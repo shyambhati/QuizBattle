@@ -11,7 +11,11 @@ import com.info.sky.quizbattle.entity.ContestEntity;
 public interface ContestService 
 {
 	public void save(ContestEntity model); 
+	
 	public ContestEntity getById(int id);
+	
+	public ContestEntity getByUnqId(String id);
+	
 	public List<ContestEntity> getlist();
 	public void update(ContestEntity model);
 	public void delet(int id);

@@ -28,7 +28,14 @@ public class ContestServiceImp implements ContestService {
 	public ContestEntity getById(int id) {
 		return dao.getOne(id);
 	}
-
+	
+	
+	@Override
+	public ContestEntity getByUnqId(String id) {
+		return dao.getByUqid(id);
+	}
+	
+	
 	@Override
 	public List<ContestEntity> getlist() {
 		return dao.findAll();

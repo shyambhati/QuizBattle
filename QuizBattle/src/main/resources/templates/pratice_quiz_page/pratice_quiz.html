@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="./base::mainlayout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body >
+
+<section>
+<style>
+.richText-btn .fa-video-camera ,.richText-help 
+{
+	display: none!important;
+	visibility: hidden!important;
+}
+.richText .richText-toolbar ul li a .richText-dropdown-outer 
+{
+    z-index: 999!important;
+}
+</style>
+ 
+		<div class="row p-2" >
+        	
+        	<div class="col-lg-12">
+        		<div class="card  p-0 border-info" >
+        		<h5 class="card-header text-white bg-info">Add New Practice Contest Details</h5>
+				  <div class="card-body p-2">
+				    <form th:action="@{Save}" 
+				    		method="post" 
+				    		th:object="${praticeQiuizBean}" 
+				    		class="row">
+						
+						<div class="col-lg-12 ">
+						
+							  <div class="form-group">
+							    <label  class=" col-form-label">Contest Question</label>
+							     <textarea class="form-control "  id="editor"
+							     rows="2" placeholder="Enter Your Question.." th:field="*{question}">Enter Your Question..</textarea>
+							  </div>
+						</div>
+						
+						<div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 1</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option1}"  
+							      placeholder="Enter option 1.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						 <div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 2</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option2}"  
+							      placeholder="Enter option 2.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						 <div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 3</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option3}"  
+							      placeholder="Enter option3.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						 
+						 
+						 <div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Option 4</label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{option4}"  
+							      placeholder="Enter option 4.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						
+						<div class="col-lg-6">
+							  <div class="form-group row">
+							    <label for="staticEmail" class="col-sm-3 col-form-label">Answer is </label>
+							    <div class="col-sm-9">
+							      <input type="text"  class="form-control" th:field="*{answer}"  
+							      placeholder="Enter answer.." required="required">
+							    </div>
+							  </div>
+						 </div>
+						
+						<div class="col-lg-6">
+							<div class="form-group row">
+							    <div class="col-sm-9 offset-md-3">
+							      <button type="submit" class="btn btn-primary btn-block">Save</button> 
+							    </div>
+							</div>
+						</div>
+					</form>
+				  </div>
+				</div>
+        	
+	        	
+	        </div>
+        
+        </div>
+
+
+ <script type="text/javascript">
+
+
+ 
+ function mindate()
+ {
+
+	 
+ elem1 = document.getElementById("startDateTime1") ;
+ elem = document.getElementById("startDateTime");
+ var iso = new Date().toISOString();
+ var minDate = iso.substring(0,16);
+ elem.value = minDate
+ elem.min = minDate
+ 
+ elem1.value = minDate
+ elem1.min = minDate
+ }
+ mindate();
+
+ </script>
+ 
+ 
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	/* https://www.jqueryscript.net/text/wysiwyg-editor-bootstrap.html */
+   /*  document.getElementById("editor").innerHTML = "<h1>Paragraph changed!</h1>"; */
+     $('#editor').wysiwyg({
+	    highlight: true,
+	    debug: false,
+	    toolbar: [
+	        ['operations', ['undo', 'rendo', 'cut', 'copy', 'paste']],
+	        ['styles'],
+	        ['fonts', ['select', 'size']],
+	        ['text', ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript'/* , 'font-color', 'bg-color' */]],
+	        ['align', ['left', 'center', 'right', 'justify']],
+	        ['lists', ['unordered', 'ordered']],
+	        ['components', [/* 'table' */, /*'chart'*/]],
+	        ['intervals', [/* 'line-height', 'letter-spacing' */]],
+	        ['insert', [/* 'emoji', 'symbol', */ /*'bookmark'*/]],
+	        ['special', [/* 'unformat', 'visual', 'clean' */]],
+	        /*['fullscreen'],*/
+	      ],
+		});
+   
+     
+   
+     
+});
+</script>
+</section>
+
+</body>
+</html>

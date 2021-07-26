@@ -8,7 +8,6 @@
 
     <!-- top navbar -->
        <!-- navbar start -->
-
 	  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-secondary" th:fragment="header">
 	    <div class="container-fluid">
 	
@@ -40,7 +39,7 @@
 	    </div>
 	  </nav>
 	  <!-- navbar end -->
-      <!-- top navbar -->
+<!-- top navbar -->
       
       
       
@@ -191,6 +190,26 @@
 		            Slide Image
 		        </a>
 		      </li>
+		      
+		      
+		      
+		       <li class="nav-item ">
+		        <a href="#quiz_sub_menu01" data-toggle="collapse" 
+		        aria-expanded="false" class="dropdown-toggle nav-link text-dark">
+		        <i class="fa fa-book mr-3 text-primary fa-fw"></i> Practice Quiz</a>
+		        <ul class="collapse list-unstyled" id="quiz_sub_menu01">	           
+		            <a href="#" th:href="@{/Admin/PraticeQuiz/New}"class="nav-link">
+			            <i class="fa fa-angle-double-right"></i>
+			            New Practice Quiz
+			        </a>		        
+			        <a href="#" th:href="@{/Admin/PraticeQuiz/Manage}"class="nav-link">
+			            <i class="fa fa-angle-double-right"></i>
+			             Practice Quiz List
+			        </a>
+		        </ul>
+		      </li>
+		      
+		      
 		    </ul>
 		
 		    <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">User</p>
@@ -199,16 +218,10 @@
 		      <li class="nav-item">
 		        <a href="#" class="nav-link">
 		            <i class="fa fa-area-chart fa-fw"></i>
-		            area charts
+		           User List
 		        </a>
 		      </li>
 		    
-		      <li class="nav-item">
-		        <a href="#" class="nav-link text-dark">
-		            <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
-		            line charts
-		        </a>
-		      </li>
 		    </ul>
 		  </div>
 		</div>
