@@ -32,6 +32,8 @@ public class MyContestServiceImp implements MyContestService {
 
 		int amount=(user.getDeposit_amt())-(model.getPlan_model().getEntryFee());
 		
+		entity.setContestEntity(model);
+		
 		user.setDeposit_amt(amount);
 	
 		userService.save(user);

@@ -39,4 +39,12 @@ public class UrlBase
 	
 	/* slide image */
 	public static String slide_image="other/slide_image";
+	
+	
+	public static String user_list="user/list";
+	public static String notification_manage="notification";
+	
+	public static String notificationManageRedirect="redirect:/Admin/Notification/Manage";
+	
+	
 }

@@ -1,5 +1,6 @@
 package com.info.sky.quizbattle.controller.api;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -87,5 +88,23 @@ public class UserApi {
 	@GetMapping("/GetByUqid/{uqid}/")
 	public UserEntity getUser(@PathVariable String token, @PathVariable String uqid) {
 			return userService.getUserByUqid(uqid);
+	}
+	
+	
+	@GetMapping("/GetWallet/{uqid}/")
+	public String getWallet(@PathVariable String token, @PathVariable String uqid) {
+		
+		UserEntity model=userService.getUserByUqid(uqid);
+		System.out.println(model);
+		
+		JSONObject obj=new JSONObject();    
+		  obj.put("Wallet",model.getDeposit_amt());    
+		  obj.put("Winning",model.getWinning_amt());    
+		  obj.put("cash",model.getCash_amt());    
+		   System.out.print(obj);    
+		
+		return obj.toString();
+		
+		//return userService.getUserByUqid(uqid);
 	}
 }

@@ -27,7 +27,7 @@ th:replace="base::mainlayout(~{::section})">
             <div class="counter-icon">
                 <i class="fa fa-user"></i>
             </div>
-            <span class="counter-value">7</span>
+            <span class="counter-value" th:text=${user_size}>0</span>
             <h3>T-User</h3>
         </div>
     </div>
@@ -37,7 +37,7 @@ th:replace="base::mainlayout(~{::section})">
             <div class="counter-icon">
                 <i class="fa fa-book"></i>
             </div>
-            <span class="counter-value">7</span>
+            <span class="counter-value" th:text=${quiz_size}>0</span>
             <h3>T-Quiz</h3>
         </div>
     </div>
@@ -57,7 +57,7 @@ th:replace="base::mainlayout(~{::section})">
             <div class="counter-icon">
                 <i class="fa fa-percent"></i>
             </div>
-            <span class="counter-value"></span>
+            <span class="counter-value" th:text=${pool_size}>0</span>
             <h3>Total-Plan</h3>
         </div>
     </div>
@@ -76,57 +76,19 @@ th:replace="base::mainlayout(~{::section})">
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Last Login</th>
-              <th>IsActive</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
+            
+            <tr th:each="obj : ${userList}">
+	            <th th:text="${obj.id}"> ID </th>
+	            <td th:text="${obj.name}"> Name</td>
+	             <td th:text="${obj.email}" > Name</td>
+	            <td th:text="${obj.phone}"> Name</td>
+	            <td > </td>
+	           
+	        </tr>
           </tbody>
         </table>
       </div>

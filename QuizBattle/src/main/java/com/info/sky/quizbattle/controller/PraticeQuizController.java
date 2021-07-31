@@ -71,17 +71,7 @@ public class PraticeQuizController
 			AdminEntity admin=adminService.getAdminByUqid(sr.getAdminUnq());
 			praticeQuizBean.setAdd_by_model(admin);
 			
-			for(int i=1;i<=20;i++)
-			{
-				praticeQuizBean.setQuestion(praticeQuizBean.getQuestion()+" "+i);
-				praticeQuizBean.setOption1(praticeQuizBean.getOption1()+" 1");
-				praticeQuizBean.setOption2(praticeQuizBean.getOption1()+" 2");
-				praticeQuizBean.setOption3(praticeQuizBean.getOption1()+" 3");
-				praticeQuizBean.setOption4(praticeQuizBean.getOption1()+" 4");
-				praticeQiuizService.save(praticeQuizBean);
-			}
-			
-			//praticeQiuizService.save(praticeQuizBean);
+			praticeQiuizService.save(praticeQuizBean);
 			return "redirect:/Admin/PraticeQuiz/New";
 		}
 		else

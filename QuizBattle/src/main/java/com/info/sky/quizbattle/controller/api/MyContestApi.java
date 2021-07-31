@@ -27,12 +27,17 @@ public class MyContestApi {
 	@Autowired
 	private MyContestService myContestService ;
 	
-	@PostMapping("/Save/")
-	public String register(@RequestBody MyContestEntity model, @PathVariable String token) {
+	@PostMapping("/Save/{contestId}/{userId}/")
+	public String register(@PathVariable String contestId,@PathVariable String userId, @PathVariable String token) {
 		if (Config.tokenKey.equals(token))
 		{
+			MyContestEntity model=new MyContestEntity();
+			
+			model.setContestId(contestId);
+			model.setUserId(userId);
+			model.setStatus("LIVE");
 			myContestService.save(model);
-			 return "Success";
+			return "Success";
 		}
 		else
 			return "Wrong token key!";

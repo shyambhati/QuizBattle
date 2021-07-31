@@ -71,4 +71,8 @@ public class ContestEntity extends CommonEntity
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private ContestPoolEntity plan_model;
+	
+	
+//	@Column(name = "contest_status")
+//	private String contest_status;
 }

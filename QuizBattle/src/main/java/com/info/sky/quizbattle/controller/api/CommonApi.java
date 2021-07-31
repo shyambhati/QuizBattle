@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.info.sky.quizbattle.entity.CategoryEntity;
+import com.info.sky.quizbattle.entity.NotificationEntity;
 import com.info.sky.quizbattle.entity.SlideImageEntity;
+import com.info.sky.quizbattle.service.NotificationService;
 import com.info.sky.quizbattle.service.OtherService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,6 +38,10 @@ public class CommonApi {
 	public String getToken() {
 		return "1998";
 	}
+	
+
+	@Autowired
+	private NotificationService service;
 
 	@GetMapping("/getSlideImage/")
 	@Operation(description = "Returns All Images Id's", summary = "You can Get All image id list ")
@@ -58,5 +64,11 @@ public class CommonApi {
 		} else {
 
 		}
+	}
+	
+	
+	@GetMapping("/getNotification/")
+	public List<NotificationEntity> message(@PathVariable String token) {
+		return service.getlist();
 	}
 }

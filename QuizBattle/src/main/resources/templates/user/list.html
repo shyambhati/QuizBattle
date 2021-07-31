@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+th:replace="./base::mainlayout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<section>
+	
+
+
+  <div class="row p-2">
+    <div class="col-lg-12">
+      <div class="card p-0 ">
+      <h5 class="card-header">User List
+      </h5>
+      <div class="card-body p-0">
+        <table class="table table-sm table-bordered border-primary m-0" id="tabledata">
+          <thead>
+            <tr>
+              <th>sl</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr th:each="obj : ${userList}">
+	            <th th:text="${obj.id}"> ID </th>
+	            <td th:text="${obj.name}"> Name</td>
+	             <td th:text="${obj.email}" > Name</td>
+	            <td th:text="${obj.phone}"> Name</td>
+	            <td> </td>
+	        </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+  
+  <script type="text/javascript">
+  function showTime(){
+	    var date = new Date();
+	    var h = date.getHours(); // 0 - 23
+	    var m = date.getMinutes(); // 0 - 59
+	    var s = date.getSeconds(); // 0 - 59
+	    var session = "AM";
+	    
+	    if(h == 0){
+	        h = 12;
+	    }
+	    
+	    if(h > 12){
+	        h = h - 12;
+	        session = "PM";
+	    }
+	    
+	    h = (h < 10) ? "0" + h : h;
+	    m = (m < 10) ? "0" + m : m;
+	    s = (s < 10) ? "0" + s : s;
+	    
+	    var time = h + ":" + m + ":" + s + " " + session;
+	    document.getElementById("MyClockDisplay").innerText = time;
+	    document.getElementById("MyClockDisplay").textContent = time;
+	    
+	    setTimeout(showTime, 1000);
+	    
+	}
+
+	showTime();
+  </script>
+</section>
+
+
+</body>
+</html>

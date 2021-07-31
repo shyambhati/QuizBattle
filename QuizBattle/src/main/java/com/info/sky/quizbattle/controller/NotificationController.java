@@ -6,34 +6,28 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.info.sky.quizbattle.SessionRecord;
+import com.info.sky.quizbattle.entity.AdminEntity;
 import com.info.sky.quizbattle.entity.CategoryEntity;
-import com.info.sky.quizbattle.entity.UserEntity;
+import com.info.sky.quizbattle.entity.NotificationEntity;
 import com.info.sky.quizbattle.service.AdminService;
 import com.info.sky.quizbattle.service.CategoryService;
-import com.info.sky.quizbattle.service.UserService;
-import com.info.sky.quizbattle.service.common.Config;
+import com.info.sky.quizbattle.service.NotificationService;
+import com.info.sky.quizbattle.service.common.Uqid;
 import com.info.sky.quizbattle.service.common.UrlBase;
 
 import io.swagger.v3.oas.annotations.Hidden;
 
 @Hidden
 @Controller
-@RequestMapping("/Admin/User/")
-public class UserController {
+@RequestMapping("/Admin/Notification/")
+public class NotificationController {
 
-	
-	@Autowired
-	private UserService userService;
-	
 	@Autowired
 	private CategoryService categoryService;
 
@@ -42,16 +36,37 @@ public class UserController {
 
 	@Autowired
 	private AdminService adminService;
+	
 
-	@RequestMapping(path = "/List",method = RequestMethod.GET)
-	public String dash(Model model) {
+	@Autowired
+	private NotificationService service;
+
+	@RequestMapping(path = "/Manage",method = RequestMethod.GET)
+	public String dash(@ModelAttribute NotificationEntity notificationEntity, Model model) {
 
 		if (sr.isLogin()) {
-			List<UserEntity> list = userService.getList();
+			List<NotificationEntity> list = service.getlist();
 
-			model.addAttribute("userList", list);
-			return UrlBase.user_list;
+			model.addAttribute("list_obj", list);
+			return UrlBase.notification_manage;
 		} else
 			return UrlBase.redirect_login;
+	}
+	
+	
+	@PostMapping({ "/Save" })
+	public String save(@ModelAttribute NotificationEntity model) {
+		if (sr.isLogin()) {
+			model.setIsdelete("No");
+			model.setUqid(Uqid.getuqid() + "");
+
+			AdminEntity admin = adminService.getAdminByUqid(sr.getAdminUnq());
+			model.setAdd_by_model(admin);
+
+			service.save(model);
+			return UrlBase.notificationManageRedirect;
+		} else
+			return UrlBase.redirect_login;
+
 	}
 }

@@ -82,7 +82,6 @@ public class UserServiceImp implements UserService {
 	public UserEntity getUserByUqid(String uqid) {
 		
 			return userDao.getByUqid(uqid);
-	
 	}
 
 	

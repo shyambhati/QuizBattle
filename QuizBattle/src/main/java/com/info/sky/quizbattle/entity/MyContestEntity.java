@@ -1,11 +1,14 @@
 package com.info.sky.quizbattle.entity;
 
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -29,6 +32,10 @@ public class MyContestEntity {
 	@Schema(description = "Enter contest Unique Id {uqid}")
 	@Column(name = "contestId")
 	private String contestId;
+	
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private ContestEntity contestEntity;
 	
 	@Schema(description = "Enter User Unique Id {uqid}")
 	@Column(name = "userId")
